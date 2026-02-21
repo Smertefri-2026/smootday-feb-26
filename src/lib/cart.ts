@@ -64,10 +64,16 @@ export function cartTotal(items: CartItem[]) {
   return items.reduce((sum, x) => sum + x.priceNok * x.qty, 0);
 }
 
+// ✅ 0,- og 399,- osv (uten "kr")
 export function formatNok(n: number) {
-  return new Intl.NumberFormat("nb-NO", {
+  if (n === 0) return "0,-";
+
+  const formatted = new Intl.NumberFormat("nb-NO", {
     style: "currency",
     currency: "NOK",
     maximumFractionDigits: 0,
   }).format(n);
+
+  // nb-NO kan gi "kr 399" (med non-breaking space)
+  return formatted.replace(/kr\s?/i, "").trim() + ",-";
 }

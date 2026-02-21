@@ -104,3 +104,28 @@ textarea:focus {
   border: 1px solid var(--line);
   border-radius: 9999px;
 }
+
+/* =========================
+   Button reset + pill helper
+   (fix “overlap” / baseline issues)
+   ========================= */
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  font: inherit;            /* use Inter/Sora correctly */
+  line-height: 1;           /* stable */
+  letter-spacing: inherit;
+}
+
+/* Pill buttons used as “chips” */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  white-space: nowrap;
+}

@@ -159,10 +159,10 @@ export default function Section3QuickCheck() {
               </div>
 
               <div className="mt-4 grid gap-4">
-                <Progress label="Core Aminos" value={coverage.aminos} />
-                <Progress label="Core Vitamins" value={coverage.vitamins} />
-                <Progress label="Core Minerals" value={coverage.minerals} />
-                <Progress label="Core Fats" value={coverage.fats} />
+                <Progress label="Essensielle Aminos" value={coverage.aminos} />
+                <Progress label="Essensielle Vitamins" value={coverage.vitamins} />
+                <Progress label="Essensielle Minerals" value={coverage.minerals} />
+                <Progress label="Essensielle Fats" value={coverage.fats} />
                 <Progress label="Hydration" value={coverage.hydration} />
                 <Progress label="Performance" value={coverage.performance} />
               </div>
