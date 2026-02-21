@@ -1,3 +1,4 @@
+// /Users/oystein/nettsider/smootday-v2-feb-26/src/app/unlock/page.tsx
 "use client";
 
 import { useState } from "react";
@@ -7,12 +8,17 @@ export default function UnlockPage() {
   const [err, setErr] = useState<string | null>(null);
 
   const submit = () => {
+    setErr(null);
+
     if (pw.trim().toLowerCase() !== "henry") {
       setErr("Feil passord");
       return;
     }
-    // set cookie (7 dager)
-document.cookie = `smooday_preview=1; path=/; max-age=${60 * 60 * 24 * 7}; samesite=lax`;  };
+
+    // ✅ sett cookie (7 dager) + redirect
+    document.cookie = `smooday_preview=1; path=/; max-age=${60 * 60 * 24 * 7}; samesite=lax; secure`;
+    window.location.href = "/preview";
+  };
 
   return (
     <div
@@ -40,8 +46,14 @@ document.cookie = `smooday_preview=1; path=/; max-age=${60 * 60 * 24 * 7}; sames
           Preview
         </h1>
 
+        <p className="mt-2 text-sm" style={{ color: "var(--slate)" }}>
+          Skriv passordet for å åpne preview-siden.
+        </p>
 
-        <label className="mt-6 block text-sm font-semibold" style={{ color: "var(--slate)" }}>
+        <label
+          className="mt-6 block text-sm font-semibold"
+          style={{ color: "var(--slate)" }}
+        >
           Passord
         </label>
 
@@ -64,7 +76,7 @@ document.cookie = `smooday_preview=1; path=/; max-age=${60 * 60 * 24 * 7}; sames
           className="mt-5 h-12 w-full rounded-full text-sm font-extrabold"
           style={{ background: "var(--g-primary)", color: "#fff" }}
         >
-          Lås opp
+          Logg inn
         </button>
       </main>
     </div>

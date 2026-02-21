@@ -1,3 +1,4 @@
+// /Users/oystein/nettsider/smootday-v2-feb-26/src/app/page.tsx
 export default function Home() {
   return (
     <div
@@ -9,49 +10,46 @@ export default function Home() {
     >
       <main
         className="w-full max-w-2xl rounded-3xl border p-8 sm:p-10"
-        style={{ background: "var(--surface)", borderColor: "var(--line)", boxShadow: "var(--shadow-card)" }}
+        style={{
+          background: "var(--surface)",
+          borderColor: "var(--line)",
+          boxShadow: "var(--shadow-card)",
+        }}
       >
-        <div
-          className="text-4xl tracking-wide"
-          style={{ fontFamily: "var(--font-ranchers)", color: "var(--ink)" }}
-        >
-          Smooday
+        {/* Top row: brand + login */}
+        <div className="flex items-start justify-between gap-4">
+          <div
+            className="text-4xl tracking-wide"
+            style={{ fontFamily: "var(--font-ranchers)", color: "var(--ink)" }}
+          >
+            Smooday
+          </div>
+
+          <a
+            href="/unlock"
+            className="inline-flex h-10 items-center justify-center rounded-full px-4 text-sm font-extrabold transition"
+            style={{
+              background: "rgba(255,255,255,0.70)",
+              border: "1px solid var(--line)",
+              color: "var(--ink)",
+            }}
+          >
+            Logg inn
+          </a>
         </div>
 
-        <h1 className="mt-4 text-2xl sm:text-3xl font-extrabold" style={{ fontFamily: "var(--font-heading)" }}>
-          Hei 👋 
+        <h1
+          className="mt-4 text-2xl sm:text-3xl font-extrabold"
+          style={{ fontFamily: "var(--font-heading)" }}
+        >
+          Hei 👋
         </h1>
 
         <p className="mt-3 text-lg leading-8" style={{ color: "var(--slate)" }}>
           Vi bygger nå en spennende nyhet. Mer info kommer snart.
         </p>
 
-        {/* Newsletter */}
-        <div className="mt-8 rounded-3xl border p-6" style={{ borderColor: "var(--line)", background: "var(--bg-2)" }}>
-          <div className="text-sm font-semibold" style={{ color: "var(--slate)" }}>
-            Nyhetsbrev 
-          </div>
-          <p className="mt-2 text-sm" style={{ color: "var(--slate)" }}>
-            Legg igjen e-post så sender vi oppdatering når vi lanserer.
-          </p>
-
-          <div className="mt-4 flex flex-col gap-3 sm:flex-row">
-            <input
-              className="h-12 flex-1 rounded-2xl border px-4 text-sm"
-              placeholder="Din e-post"
-            />
-            <button
-              className="h-12 rounded-full px-6 text-sm font-extrabold"
-              style={{ background: "var(--g-primary)", color: "#fff" }}
-            >
-              Meld meg på
-            </button>
-          </div>
-
-       
-        </div>
-
-        {/* Contact form */}
+         {/* Contact form */}
         <div className="mt-6 rounded-3xl border p-6" style={{ borderColor: "var(--line)" }}>
           <div className="text-sm font-semibold" style={{ color: "var(--slate)" }}>
             Kontakt oss
@@ -63,27 +61,18 @@ export default function Home() {
           <div className="mt-4 grid gap-3">
             <input className="h-12 rounded-2xl border px-4 text-sm" placeholder="Navn" />
             <input className="h-12 rounded-2xl border px-4 text-sm" placeholder="E-post" />
-            <textarea className="rounded-2xl border p-4 text-sm" rows={4} placeholder="Melding" />
+            <textarea
+              className="rounded-2xl border p-4 text-sm"
+              rows={4}
+              placeholder="Melding"
+            />
             <button
               className="h-12 rounded-full text-sm font-extrabold"
               style={{ background: "var(--g-primary)", color: "#fff" }}
             >
               Send melding
             </button>
-            <div className="text-xs" style={{ color: "var(--slate)" }}>
-            </div>
           </div>
-        </div>
-
-        {/* Preview link */}
-        <div className="mt-6 flex gap-3">
-          <a
-            href="/unlock"
-            className="inline-flex h-12 items-center justify-center rounded-full px-6 text-sm font-extrabold"
-            style={{ background: "rgba(255,255,255,0.70)", border: "1px solid var(--line)", color: "var(--ink)" }}
-          >
-            Logg inn (passord)
-          </a>
         </div>
       </main>
     </div>

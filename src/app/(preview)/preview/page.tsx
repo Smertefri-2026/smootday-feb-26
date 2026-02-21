@@ -1,3 +1,4 @@
+// /Users/oystein/nettsider/smootday-v2-feb-26/src/app/(preview)/preview/page.tsx
 import PublicHeader from "@/components/shell/PublicHeader";
 
 import Section1Hero from "@/app/(preview)/sections/Section1Hero";
