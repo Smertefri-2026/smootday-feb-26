@@ -7,18 +7,17 @@ export default function UnlockPage() {
   const [pw, setPw] = useState("");
   const [err, setErr] = useState<string | null>(null);
 
-  const submit = () => {
-    setErr(null);
+const submit = () => {
+  setErr(null);
 
-    if (pw.trim().toLowerCase() !== "henry") {
-      setErr("Feil passord");
-      return;
-    }
+  if (pw.trim().toLowerCase() !== "henry") {
+    setErr("Feil passord");
+    return;
+  }
 
-    // ✅ sett cookie (7 dager) + redirect
-    document.cookie = `smooday_preview=1; path=/; max-age=${60 * 60 * 24 * 7}; samesite=lax; secure`;
-    window.location.href = "/preview";
-  };
+  document.cookie = `smooday_preview=1; path=/; max-age=${60 * 60 * 24 * 7}; samesite=lax; secure; domain=.smootday.com`;
+  window.location.href = "/preview";
+};
 
   return (
     <div
