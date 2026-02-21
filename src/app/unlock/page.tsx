@@ -41,9 +41,6 @@ document.cookie = `smooday_preview=1; path=/; max-age=${60 * 60 * 24 * 7}; sames
           Preview
         </h1>
 
-        <p className="mt-2 text-sm" style={{ color: "var(--slate)" }}>
-          Denne siden er låst mens vi ferdigstiller produktene.
-        </p>
 
         <label className="mt-6 block text-sm font-semibold" style={{ color: "var(--slate)" }}>
           Passord
