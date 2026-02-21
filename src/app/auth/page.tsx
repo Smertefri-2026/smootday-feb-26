@@ -7,17 +7,21 @@ export default function UnlockPage() {
   const [pw, setPw] = useState("");
   const [err, setErr] = useState<string | null>(null);
 
-const submit = () => {
-  setErr(null);
+  const submit = () => {
+    setErr(null);
 
-  if (pw.trim().toLowerCase() !== "henry") {
-    setErr("Feil passord");
-    return;
-  }
+    if (pw.trim().toLowerCase() !== "henry") {
+      setErr("Feil passord");
+      return;
+    }
 
-  document.cookie = `smooday_preview=1; path=/; max-age=${60 * 60 * 24 * 7}; samesite=lax; secure; domain=.smootday.com`;
-  window.location.href = "/preview";
-};
+    // ✅ sett cookie (7 dager) + redirect til gated side ("/")
+    document.cookie = `smooday_preview=1; path=/; max-age=${
+      60 * 60 * 24 * 7
+    }; samesite=lax; secure; domain=.smootday.com`;
+
+    window.location.href = "/panel";
+  };
 
   return (
     <div
@@ -42,7 +46,7 @@ const submit = () => {
           className="mt-3 text-xl font-extrabold"
           style={{ fontFamily: "var(--font-heading)" }}
         >
-          Preview
+          Logg inn
         </h1>
 
         <p className="mt-2 text-sm" style={{ color: "var(--slate)" }}>

@@ -1,4 +1,3 @@
-// /Users/oystein/nettsider/smootday-v2-feb-26/src/app/(preview)/preview/page.tsx
 import PublicHeader from "@/components/shell/PublicHeader";
 
 import Section1Hero from "@/app/(public)/sections/Section1Hero";
@@ -12,7 +11,7 @@ import Section4Benefits from "@/app/(public)/sections/Section4Benefits";
 import Section5FAQ from "@/app/(public)/sections/Section5FAQ";
 import Section6Contact from "@/app/(public)/sections/Section6Contact";
 
-export default function PreviewPage() {
+export default function PanelPage() {
   return (
     <div
       id="top"
