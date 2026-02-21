@@ -12,8 +12,7 @@ export default function UnlockPage() {
       return;
     }
     // set cookie (7 dager)
-    document.cookie = `smooday_preview=1; path=/; max-age=${60 * 60 * 24 * 7}`;
-    window.location.href = "/";
+document.cookie = `smooday_preview=1; path=/; max-age=${60 * 60 * 24 * 7}; samesite=lax`;    window.location.href = "/preview";
   };
 
   return (

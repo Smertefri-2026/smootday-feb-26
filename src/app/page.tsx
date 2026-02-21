@@ -1,39 +1,91 @@
-import PublicHeader from "@/components/shell/PublicHeader";
-import Section1Hero from "@/app/sections/Section1Hero";
-import Section2Products from "@/app/sections/Section2Products";
-import Section3QuickCheck from "@/app/sections/Section3QuickCheck";
-import Section4Benefits from "@/app/sections/Section4Benefits";
-import Section5FAQ from "@/app/sections/Section5FAQ";
-import Section6Contact from "@/app/sections/Section6Contact";
-import Section3bHowItWorks from "@/app/sections/Section3bHowItWorks";
-import Section3cWhyDifferent from "@/app/sections/Section3cWhyDifferent";
-import Section3dSubscription from "@/app/sections/Section3dSubscription";
-import Section3eTrust from "@/app/sections/Section3eTrust";
-
 export default function Home() {
   return (
     <div
-      id="top"
-      className="min-h-screen"
+      className="min-h-screen flex items-center justify-center px-6"
       style={{
         background:
           "linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 60%, var(--bg) 100%)",
       }}
     >
-      <PublicHeader />
+      <main
+        className="w-full max-w-2xl rounded-3xl border p-8 sm:p-10"
+        style={{ background: "var(--surface)", borderColor: "var(--line)", boxShadow: "var(--shadow-card)" }}
+      >
+        <div
+          className="text-4xl tracking-wide"
+          style={{ fontFamily: "var(--font-ranchers)", color: "var(--ink)" }}
+        >
+          Smooday
+        </div>
 
-      <Section1Hero />
-      <Section2Products />
-      <Section3QuickCheck />
-      <Section3QuickCheck />
-<Section3bHowItWorks />
-<Section3cWhyDifferent />
-<Section3dSubscription />
-<Section3eTrust />
-      <Section4Benefits />
-      <Section5FAQ />
-      <Section6Contact />
-      
+        <h1 className="mt-4 text-2xl sm:text-3xl font-extrabold" style={{ fontFamily: "var(--font-heading)" }}>
+          Hei 👋 
+        </h1>
+
+        <p className="mt-3 text-lg leading-8" style={{ color: "var(--slate)" }}>
+          Vi bygger nå en spennende nyhet. Mer info kommer snart.
+        </p>
+
+        {/* Newsletter */}
+        <div className="mt-8 rounded-3xl border p-6" style={{ borderColor: "var(--line)", background: "var(--bg-2)" }}>
+          <div className="text-sm font-semibold" style={{ color: "var(--slate)" }}>
+            Nyhetsbrev 
+          </div>
+          <p className="mt-2 text-sm" style={{ color: "var(--slate)" }}>
+            Legg igjen e-post så sender vi oppdatering når vi lanserer.
+          </p>
+
+          <div className="mt-4 flex flex-col gap-3 sm:flex-row">
+            <input
+              className="h-12 flex-1 rounded-2xl border px-4 text-sm"
+              placeholder="Din e-post"
+            />
+            <button
+              className="h-12 rounded-full px-6 text-sm font-extrabold"
+              style={{ background: "var(--g-primary)", color: "#fff" }}
+            >
+              Meld meg på
+            </button>
+          </div>
+
+       
+        </div>
+
+        {/* Contact form */}
+        <div className="mt-6 rounded-3xl border p-6" style={{ borderColor: "var(--line)" }}>
+          <div className="text-sm font-semibold" style={{ color: "var(--slate)" }}>
+            Kontakt oss
+          </div>
+          <p className="mt-2 text-sm" style={{ color: "var(--slate)" }}>
+            Send en melding – vi svarer så fort vi kan.
+          </p>
+
+          <div className="mt-4 grid gap-3">
+            <input className="h-12 rounded-2xl border px-4 text-sm" placeholder="Navn" />
+            <input className="h-12 rounded-2xl border px-4 text-sm" placeholder="E-post" />
+            <textarea className="rounded-2xl border p-4 text-sm" rows={4} placeholder="Melding" />
+            <button
+              className="h-12 rounded-full text-sm font-extrabold"
+              style={{ background: "var(--g-primary)", color: "#fff" }}
+            >
+              Send melding
+            </button>
+            <div className="text-xs" style={{ color: "var(--slate)" }}>
+            </div>
+          </div>
+        </div>
+
+        {/* Preview link */}
+        <div className="mt-6 flex gap-3">
+          <a
+            href="/unlock"
+            className="inline-flex h-12 items-center justify-center rounded-full px-6 text-sm font-extrabold"
+            style={{ background: "rgba(255,255,255,0.70)", border: "1px solid var(--line)", color: "var(--ink)" }}
+          >
+            Logg inn (passord)
+          </a>
+        </div>
+      </main>
     </div>
   );
 }
