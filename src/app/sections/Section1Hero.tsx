@@ -68,7 +68,7 @@ export default function Section1Hero() {
                 borderRadius: 9999,
               }}
             >
-              Sjekk dekning
+              Sjekk essensielle 
             </a>
           </div>
         </div>
