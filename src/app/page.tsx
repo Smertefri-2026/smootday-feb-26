@@ -26,7 +26,7 @@ export default function Home() {
           </div>
 
           <a
-            href="/unlock"
+            href="/auth"
             className="inline-flex h-10 items-center justify-center rounded-full px-4 text-sm font-extrabold transition"
             style={{
               background: "rgba(255,255,255,0.70)",

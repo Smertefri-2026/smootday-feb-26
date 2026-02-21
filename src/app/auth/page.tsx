@@ -1,4 +1,4 @@
-// /Users/oystein/nettsider/smootday-v2-feb-26/src/app/unlock/page.tsx
+// /Users/oystein/nettsider/smootday-v2-feb-26/src/app/auth/page.tsx
 "use client";
 
 import { useState } from "react";

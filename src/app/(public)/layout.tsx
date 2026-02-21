@@ -10,6 +10,6 @@ export default async function PreviewLayout({
   const cookieStore = await cookies();
   const unlocked = cookieStore.get("smooday_preview")?.value === "1";
 
-  if (!unlocked) redirect("/unlock");
+  if (!unlocked) redirect("/auth");
   return <>{children}</>;
 }
