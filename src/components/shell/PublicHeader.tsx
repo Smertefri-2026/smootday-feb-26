@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 type Item = { href: string; label: string };
 
 export default function PublicHeader({
-  brand = "Smooday",
+  brand = "Smootday",
   links = [
     { href: "#produkter", label: "Produkter" },
     { href: "#quickcheck", label: "Sjekk" },

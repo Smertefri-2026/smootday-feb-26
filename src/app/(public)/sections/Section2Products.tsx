@@ -64,6 +64,27 @@ export default function Section2Products() {
     window.setTimeout(() => setToast(null), 1600);
   };
 
+  // ✅ Hero-style buttons (samme UI som i Section1Hero)
+  const baseBtn =
+    "inline-flex items-center justify-center rounded-full px-4 h-11 text-sm font-extrabold transition select-none";
+  const outlineStyle = {
+    background: "rgba(255,255,255,0.70)",
+    color: "var(--ink)",
+    border: "1px solid var(--line)",
+  } as const;
+
+  const activePrimaryStyle = {
+    background: "var(--g-primary)",
+    color: "#fff",
+    border: "1px solid transparent",
+  } as const;
+
+  const activeAccentStyle = {
+    background: "var(--accent)",
+    color: "#fff",
+    border: "1px solid transparent",
+  } as const;
+
   return (
     <section id="produkter" className="mx-auto w-full max-w-6xl px-6 py-10">
       <h2
@@ -135,22 +156,16 @@ export default function Section2Products() {
               </div>
 
               <div className="mt-4 grid gap-3 sm:grid-cols-2">
-                <button
-                  onClick={addOneTime}
-                  className="h-12 rounded-full text-sm font-extrabold"
-                  style={{
-                    background: "rgba(255,255,255,0.75)",
-                    border: "1px solid var(--line)",
-                    color: "var(--ink)",
-                  }}
-                >
+                {/* ✅ samme outline UI som hero */}
+                <button onClick={addOneTime} className={baseBtn} style={outlineStyle}>
                   Kjøp én gang
                 </button>
 
+                {/* ✅ samme primary gradient UI som hero */}
                 <button
                   onClick={addSubscription}
-                  className="h-12 rounded-full text-sm font-extrabold"
-                  style={{ background: "var(--g-primary)", color: "#fff" }}
+                  className={baseBtn}
+                  style={{ background: "var(--g-primary)", color: "#fff", border: "1px solid transparent" }}
                 >
                   Abonner (−10%)
                 </button>
@@ -181,20 +196,16 @@ export default function Section2Products() {
               Velg produkt
             </div>
 
-            {/* ✅ Stabil spacing: pill + fast høyde + gap-y */}
-            <div className="mt-2 flex flex-wrap gap-x-2 gap-y-2">
+            {/* ✅ Produkt-knapper = hero outline + active primary */}
+            <div className="mt-3 flex flex-wrap gap-2">
               {STORE_PRODUCTS.map((p) => {
                 const active = p.id === product.id;
                 return (
                   <button
                     key={p.id}
                     onClick={() => setProductId(p.id)}
-                    className="pill h-11 rounded-full px-4 text-sm font-extrabold transition ring-1"
-                    style={{
-                      borderColor: active ? "transparent" : "var(--line)",
-                      background: active ? "var(--g-primary)" : "rgba(255,255,255,0.70)",
-                      color: active ? "#fff" : "var(--ink)",
-                    }}
+                    className={baseBtn}
+                    style={active ? activePrimaryStyle : outlineStyle}
                   >
                     {p.id === "odf" ? "ODF" : p.name}
                   </button>
@@ -202,25 +213,22 @@ export default function Section2Products() {
               })}
             </div>
 
+            {/* ✅ Variant-knapper = hero outline + active accent */}
             {(product.variants?.length ?? 0) > 1 ? (
               <div className="mt-4">
                 <div className="text-sm font-semibold" style={{ color: "var(--slate)" }}>
                   Velg variant
                 </div>
 
-                <div className="mt-2 flex flex-wrap gap-x-2 gap-y-2">
+                <div className="mt-3 flex flex-wrap gap-2">
                   {product.variants!.map((v) => {
                     const active = v.id === variantId;
                     return (
                       <button
                         key={v.id}
                         onClick={() => setVariantId(v.id)}
-                        className="pill h-11 rounded-full px-4 text-sm font-extrabold transition ring-1"
-                        style={{
-                          borderColor: active ? "transparent" : "var(--line)",
-                          background: active ? "var(--accent)" : "rgba(255,255,255,0.70)",
-                          color: active ? "#fff" : "var(--ink)",
-                        }}
+                        className={baseBtn}
+                        style={active ? activeAccentStyle : outlineStyle}
                       >
                         {v.label}
                       </button>

@@ -1,76 +1,177 @@
-// /Users/oystein/nettsider/smootday-v2-feb-26/src/app/sections/Section1Hero.tsx
+"use client";
+
+import { useEffect, useMemo, useState } from "react";
+import Image from "next/image";
+import Section1aViblir from "./Section1aViblir";
+import Section1bOm from "./Section1bOm";
+
+type Slide = {
+  key: string;
+  node: React.ReactNode;
+  imageSrc?: string;
+  imageAlt?: string;
+  imageSide?: "left" | "right";
+  caption?: string;
+};
+
 export default function Section1Hero() {
+  const slides: Slide[] = useMemo(
+    () => [
+      {
+        key: "viblir",
+        node: <Section1aViblir />,
+        imageSrc: "/Section1aViblir.png",
+        imageAlt: "Smooday – Essentials System",
+        imageSide: "left",
+        caption: "Essentials System – en enkel måte å sikre det viktigste hver dag.",
+      },
+      {
+        key: "om",
+        node: <Section1bOm />,
+        imageSrc: "/Section1bOm.png",
+        imageAlt: "Smooday – kvalitet og utvikling",
+        imageSide: "right",
+        caption: "Kvalitet, dokumentasjon og stabil produksjon – fundamentet i Smooday.",
+      },
+    ],
+    []
+  );
+
+  const [idx, setIdx] = useState(0);
+
+  useEffect(() => {
+    const t = setInterval(() => setIdx((i) => (i + 1) % slides.length), 9000);
+    return () => clearInterval(t);
+  }, [slides.length]);
+
+  const active = slides[idx];
+  const imageOnLeft = active.imageSide === "left";
+
+  const ImageCard = active.imageSrc ? (
+    <div
+      className="rounded-3xl border p-3 sm:p-4"
+      style={{
+        borderColor: "var(--line)",
+        background: "rgba(255,255,255,0.55)",
+        boxShadow: "var(--shadow-soft)",
+      }}
+    >
+      <div className="relative w-full overflow-hidden rounded-3xl aspect-[4/3] lg:aspect-[4/3] lg:max-h-[280px]">
+        <Image
+          src={active.imageSrc}
+          alt={active.imageAlt ?? "Smooday"}
+          fill
+          className="object-cover object-center"
+          priority
+        />
+      </div>
+
+      {active.caption ? (
+        <p className="mt-3 text-xs sm:text-sm" style={{ color: "var(--slate)" }}>
+          {active.caption}
+        </p>
+      ) : null}
+    </div>
+  ) : null;
+
+  const TextBlock = (
+    <div className="min-w-0">
+      <div className="transition-opacity duration-300">{active.node}</div>
+
+      <div className="mt-6 flex flex-col sm:flex-row gap-3">
+        <a
+          href="#produkter"
+          className="inline-flex h-12 items-center justify-center px-6 text-sm font-extrabold"
+          style={{
+            background: "var(--g-primary)",
+            color: "#fff",
+            borderRadius: 9999,
+          }}
+        >
+          Våre produkter
+        </a>
+
+        <a
+          href="#quickcheck"
+          className="inline-flex h-12 items-center justify-center px-6 text-sm font-extrabold"
+          style={{
+            background: "rgba(255,255,255,0.70)",
+            color: "var(--ink)",
+            border: "1px solid var(--line)",
+            borderRadius: 9999,
+          }}
+        >
+          Sjekk essensielle
+        </a>
+
+        <a
+          href="/om"
+          className="inline-flex h-12 items-center justify-center px-6 text-sm font-extrabold"
+          style={{
+            background: "rgba(255,255,255,0.70)",
+            color: "var(--ink)",
+            border: "1px solid var(--line)",
+            borderRadius: 9999,
+          }}
+        >
+          Om Smooday
+        </a>
+      </div>
+
+      <div className="mt-5 flex items-center gap-2">
+        {slides.map((s, i) => (
+          <button
+            key={s.key}
+            onClick={() => setIdx(i)}
+            aria-label={`Slide ${i + 1}`}
+            className="h-2.5 w-2.5 rounded-full"
+            style={{
+              background: i === idx ? "var(--ink)" : "rgba(15,23,42,0.25)",
+              border: "1px solid var(--line)",
+            }}
+          />
+        ))}
+        <span className="ml-2 text-xs" style={{ color: "var(--slate)" }}>
+          {idx + 1}/{slides.length}
+        </span>
+      </div>
+    </div>
+  );
+
   return (
     <section className="mx-auto w-full max-w-6xl px-6 pt-10 pb-10">
       <div
-        className="rounded-3xl border p-8 sm:p-10"
+        className="rounded-3xl border p-6 sm:p-10"
         style={{
           background: "var(--surface)",
           borderColor: "var(--line)",
           boxShadow: "var(--shadow-card)",
         }}
       >
-        <div className="max-w-3xl">
-          <p className="text-sm font-semibold" style={{ color: "var(--slate)" }}>
-            Verdens første • Det essensielle systemet
-          </p>
+        {/* Mobil: tekst først, bilde nederst */}
+        <div className="grid gap-8 lg:hidden">
+          {TextBlock}
+          {ImageCard}
+        </div>
 
-          <h1
-            className="mt-3 text-3xl sm:text-5xl font-extrabold tracking-tight"
-            style={{ fontFamily: "var(--font-heading)", color: "var(--ink)" }}
-          >
-            Vi blir fortalt at{" "}
-            <span
-              style={{
-                background: "var(--g-primary)",
-                WebkitBackgroundClip: "text",
-                color: "transparent",
-              }}
-            >
-              du må spise sunn mat
-            </span>{" "}
-            – men får kroppen din alt den trenger?
-          </h1>
-
-          <p className="mt-4 text-lg leading-8" style={{ color: "var(--slate)" }}>
-            Mange kjenner til <b>essensielle aminosyrer</b>. Men hva med{" "}
-            <b>essensielle vitaminer</b>, <b>mineraler</b>, <b>fett</b>,{" "}
-            <b>hydrering</b> og <b>ytelse</b>?
-          </p>
-
-          <p className="mt-3 text-lg leading-8" style={{ color: "var(--slate)" }}>
-            Smooday gjør det enkelt: sjekk hva du får i deg – og hvis du mangler
-            noe (eller bare vil være helt trygg), hjelper vi deg å fylle på{" "}
-            <b>med fokus på biotilgjengelighet</b>, altså det kroppen faktisk tar
-            opp.
-          </p>
-
-          <div className="mt-6 flex flex-col sm:flex-row gap-3">
-            <a
-              href="#produkter"
-              className="inline-flex h-12 items-center justify-center px-6 text-sm font-extrabold"
-              style={{
-                background: "var(--g-primary)",
-                color: "#fff",
-                borderRadius: 9999,
-              }}
-            >
-              Våre produkter
-            </a>
-
-            <a
-              href="#quickcheck"
-              className="inline-flex h-12 items-center justify-center px-6 text-sm font-extrabold"
-              style={{
-                background: "rgba(255,255,255,0.70)",
-                color: "var(--ink)",
-                border: "1px solid var(--line)",
-                borderRadius: 9999,
-              }}
-            >
-              Sjekk essensielle 
-            </a>
-          </div>
+        {/* Desktop: midtstill på høyden + riktig 2/3 vs 1/3 uansett side */}
+        <div
+          className={[
+            "hidden lg:grid gap-10 lg:items-center",
+            imageOnLeft ? "lg:grid-cols-[1fr_2fr]" : "lg:grid-cols-[2fr_1fr]",
+          ].join(" ")}
+        >
+          {imageOnLeft ? (
+            <>
+              {ImageCard}
+              {TextBlock}
+            </>
+          ) : (
+            <>
+              {TextBlock}
+              {ImageCard}
+            </>
+          )}
         </div>
       </div>
     </section>

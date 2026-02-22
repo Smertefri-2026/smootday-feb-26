@@ -31,8 +31,28 @@ export const STORE_PRODUCTS: StoreProduct[] = [
     bullets: ["Aminos & Vitamins", "Minerals & Electrolytes", "Prebiotic Fiber"],
     description:
       "Vårt hovedprodukt – designet som fundamentet i Essentials System. Laget for å gjøre det enkelt å dekke det viktigste hver dag, med fokus på kvalitet og biotilgjengelighet.",
+    // ✅ Smoothie først = default i UI
     variants: [
-      { id: "odf", label: "ODF", subtitle: "Standard", priceNok: 0 },
+      {
+        id: "odf-smoothie",
+        label: "Smoothie",
+        subtitle: "Ferdig drikk",
+        priceNok: 0,
+        image: "/products/odf2.png",
+        bullets: ["Aminos & Vitamins", "Minerals & Electrolytes", "Prebiotic Fiber"],
+        description:
+          "ODF Smoothie: ferdig drikk med Essentials System ODF – for deg som vil ha den enkleste rutinen (klar på sekunder).",
+      },
+      {
+        id: "odf-powder",
+        label: "Pulver",
+        subtitle: "Bland i vann",
+        priceNok: 0,
+        image: "/products/odf.png",
+        bullets: ["Aminos & Vitamins", "Minerals & Electrolytes", "Prebiotic Fiber"],
+        description:
+          "ODF Pulver: blandes i vann (eller i smoothie hjemme). Perfekt for deg som vil ha lavest frakt/lagring og full fleksibilitet.",
+      },
     ],
   },
 
