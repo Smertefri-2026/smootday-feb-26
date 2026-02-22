@@ -36,7 +36,7 @@ export default function ProductCard() {
     addToCart({
       productId: "smooday-store",
       variantId: vid,
-      name: "Smooday",
+      name: "Smoday",
       variantLabel: `${product.name}${variant ? ` – ${variant.label}` : ""}`,
       priceNok: price,
       qty: 1,
@@ -54,7 +54,7 @@ export default function ProductCard() {
       <div className="flex items-start justify-between gap-4">
         <div>
           <div className="text-sm font-semibold" style={{ color: "var(--slate)" }}>
-            Smooday
+            Smoday
           </div>
           <div
             className="mt-1 text-xl font-extrabold"

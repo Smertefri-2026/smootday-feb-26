@@ -1,7 +1,7 @@
 export default function Section3bHowItWorks() {
   const steps = [
     { t: "1) Sjekk", d: "Skriv inn hva du spiser – få en enkel oversikt." },
-    { t: "2) Velg variant", d: "Velg den Smooday-varianten som fyller dine gap." },
+    { t: "2) Velg variant", d: "Velg den Smoday-varianten som fyller dine gap." },
     { t: "3) Daglig rutine", d: "Gjør det til en vane – stabilt over tid gir best effekt." },
   ];
 

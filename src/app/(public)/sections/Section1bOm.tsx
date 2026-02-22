@@ -3,7 +3,7 @@ export default function Section1bOm() {
   return (
     <>
       <p className="text-sm font-semibold" style={{ color: "var(--slate)" }}>
-        Om Smooday • Hvorfor vi bygger The Essentials System
+        Om Smoday • Hvorfor vi bygger The Essentials System
       </p>
 
       <h1

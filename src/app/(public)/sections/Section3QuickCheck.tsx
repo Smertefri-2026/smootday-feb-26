@@ -154,7 +154,7 @@ export default function Section3QuickCheck() {
                   className="inline-flex h-10 items-center justify-center rounded-full px-4 text-sm font-extrabold"
                   style={{ background: "var(--g-primary)", color: "#fff" }}
                 >
-                  Shop Smooday
+                  Shop Smoday
                 </a>
               </div>
 
@@ -169,7 +169,7 @@ export default function Section3QuickCheck() {
 
               <div className="mt-5 rounded-3xl p-4" style={{ background: "var(--bg-2)" }}>
                 <div className="text-sm font-extrabold" style={{ color: "var(--ink)" }}>
-                  Med Smooday kan du fylle gapene og komme nærmere 100%.
+                  Med Smoday kan du fylle gapene og komme nærmere 100%.
                 </div>
                 <div className="mt-1 text-sm" style={{ color: "var(--slate)" }}>
                   (Her kobler vi senere på automatisk beregning – først skal UI og flyten sitte.)
@@ -187,7 +187,7 @@ export default function Section3QuickCheck() {
               <ul className="mt-3 grid gap-2 text-sm" style={{ color: "var(--ink)" }}>
                 <li>• Automatisk P/F/K fra tekst</li>
                 <li>• Prosent per kategori</li>
-                <li>• Anbefalt Smooday-variant</li>
+                <li>• Anbefalt Smoday-variant</li>
               </ul>
             </div>
           </div>

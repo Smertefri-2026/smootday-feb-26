@@ -38,7 +38,7 @@ export default function Section2Products() {
     addToCart({
       productId: "smooday-store",
       variantId: variant?.id ?? product.id,
-      name: "Smooday",
+      name: "Smoday",
       variantLabel: variant ? `${product.name} – ${variant.label}` : product.name,
       priceNok: price,
       qty: 1,
@@ -54,7 +54,7 @@ export default function Section2Products() {
     addToCart({
       productId: "smooday-store",
       variantId: `${vid}:sub`,
-      name: "Smooday",
+      name: "Smoday",
       variantLabel: `${product.name}${variant ? ` – ${variant.label}` : ""} (Abonnement -10%)`,
       priceNok: subscriptionPrice,
       qty: 1,

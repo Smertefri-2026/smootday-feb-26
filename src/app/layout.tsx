@@ -23,7 +23,7 @@ const fontRanchers = Ranchers({
 });
 
 export const metadata: Metadata = {
-  title: "Smood.day",
+  title: "Smoday",
   description: "Essentials System – kosttilskudd og vitaminer for hver dag.",
 };
 

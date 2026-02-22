@@ -9,7 +9,7 @@ export default function Section3cWhyDifferent() {
     <section id="different" className="mx-auto w-full max-w-6xl px-6 py-10">
       <div className="rounded-3xl border p-8 sm:p-10" style={{ background: "var(--surface)", borderColor: "var(--line)", boxShadow: "var(--shadow-soft)" }}>
         <h2 className="text-2xl sm:text-3xl font-extrabold" style={{ fontFamily: "var(--font-heading)" }}>
-          Hva som gjør Smooday annerledes
+          Hva som gjør Smoday annerledes
         </h2>
         <p className="mt-2" style={{ color: "var(--slate)" }}>
           Målet er å gjøre “riktig” enklere – og mer gjennomførbart.
