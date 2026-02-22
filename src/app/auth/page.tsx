@@ -1,4 +1,3 @@
-// /Users/oystein/nettsider/smootday-v2-feb-26/src/app/auth/page.tsx
 "use client";
 
 import { useState } from "react";
@@ -15,11 +14,23 @@ export default function UnlockPage() {
       return;
     }
 
-    // ✅ sett cookie (7 dager) + redirect til gated side ("/")
-    document.cookie = `smooday_preview=1; path=/; max-age=${
-      60 * 60 * 24 * 7
-    }; samesite=lax; secure; domain=.smootday.com`;
+    // ✅ Cookie som funker på localhost + vercel + eget domene
+    const maxAge = 60 * 60 * 24 * 7;
+    const isHttps =
+      typeof window !== "undefined" && window.location.protocol === "https:";
 
+    // NB: IKKE bruk domain=... her (det er det som ødelegger)
+    document.cookie = [
+      `smooday_preview=1`,
+      `Path=/`,
+      `Max-Age=${maxAge}`,
+      `SameSite=Lax`,
+      isHttps ? "Secure" : "", // Secure kun på https
+    ]
+      .filter(Boolean)
+      .join("; ");
+
+    // ✅ send inn i gated område
     window.location.href = "/panel";
   };
 
@@ -50,13 +61,10 @@ export default function UnlockPage() {
         </h1>
 
         <p className="mt-2 text-sm" style={{ color: "var(--slate)" }}>
-          Skriv passordet for å åpne preview-siden.
+          Skriv passordet for å åpne panel-siden.
         </p>
 
-        <label
-          className="mt-6 block text-sm font-semibold"
-          style={{ color: "var(--slate)" }}
-        >
+        <label className="mt-6 block text-sm font-semibold" style={{ color: "var(--slate)" }}>
           Passord
         </label>
 

@@ -80,7 +80,7 @@ export const STORE_PRODUCTS: StoreProduct[] = [
         label: "Algae",
         subtitle: "Algae Oil (Triglyceride form)",
         priceNok: 0,
-        image: "/products/algae.png",
+        image: "/products/algea.png",
         bullets: ["Heart & Brain", "Triglyceride form", "Superior absorption"],
         description:
           "Omega-3 Complete+ (Algae): algeolje som alternativ til fisk. Samme enkle rutine – velg varianten som passer deg best.",
