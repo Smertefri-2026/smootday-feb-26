@@ -20,7 +20,7 @@ export default function Section1bOm() {
         >
           koronaen
         </span>{" "}
-        fordi vi ville finne en enklere måte å støtte kroppen på.
+        fordi vi ville finne en enklere måte å beskytte kroppen på.
       </h1>
 
       <p className="mt-4 text-lg leading-8" style={{ color: "var(--slate)" }}>

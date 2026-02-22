@@ -1,13 +1,13 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, type ReactNode } from "react";
 import Image from "next/image";
 import Section1aViblir from "./Section1aViblir";
 import Section1bOm from "./Section1bOm";
 
 type Slide = {
   key: string;
-  node: React.ReactNode;
+  node: ReactNode;
   imageSrc?: string;
   imageAlt?: string;
   imageSide?: "left" | "right";
@@ -38,11 +38,16 @@ export default function Section1Hero() {
   );
 
   const [idx, setIdx] = useState(0);
+  const [paused, setPaused] = useState(false);
 
+  // Auto-rotate only when not paused
   useEffect(() => {
-    const t = setInterval(() => setIdx((i) => (i + 1) % slides.length), 9000);
+    if (paused) return;
+    const t = setInterval(() => {
+      setIdx((i) => (i + 1) % slides.length);
+    }, 15000);
     return () => clearInterval(t);
-  }, [slides.length]);
+  }, [paused, slides.length]);
 
   const active = slides[idx];
   const imageOnLeft = active.imageSide === "left";
@@ -73,6 +78,11 @@ export default function Section1Hero() {
       ) : null}
     </div>
   ) : null;
+
+  const goToSlide = (i: number) => {
+    setIdx(i);
+    setPaused(true); // ✅ auto-pause when user interacts
+  };
 
   const TextBlock = (
     <div className="min-w-0">
@@ -118,11 +128,12 @@ export default function Section1Hero() {
         </a>
       </div>
 
-      <div className="mt-5 flex items-center gap-2">
+      {/* Dots + Pause/Play */}
+      <div className="mt-5 flex flex-wrap items-center gap-2">
         {slides.map((s, i) => (
           <button
             key={s.key}
-            onClick={() => setIdx(i)}
+            onClick={() => goToSlide(i)}
             aria-label={`Slide ${i + 1}`}
             className="h-2.5 w-2.5 rounded-full"
             style={{
@@ -131,9 +142,25 @@ export default function Section1Hero() {
             }}
           />
         ))}
+
         <span className="ml-2 text-xs" style={{ color: "var(--slate)" }}>
           {idx + 1}/{slides.length}
         </span>
+
+        <button
+          onClick={() => setPaused((p) => !p)}
+          className="ml-3 inline-flex h-9 items-center justify-center px-4 text-xs font-extrabold"
+          style={{
+            background: "rgba(255,255,255,0.70)",
+            color: "var(--ink)",
+            border: "1px solid var(--line)",
+            borderRadius: 9999,
+          }}
+          aria-label={paused ? "Play slideshow" : "Pause slideshow"}
+          title={paused ? "Play" : "Pause"}
+        >
+          {paused ? "Start" : "Pause"}
+        </button>
       </div>
     </div>
   );

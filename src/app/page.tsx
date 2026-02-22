@@ -22,7 +22,7 @@ export default function Home() {
             className="text-4xl tracking-wide"
             style={{ fontFamily: "var(--font-ranchers)", color: "var(--ink)" }}
           >
-            Smooday
+            Smootday
           </div>
 
           <a

@@ -59,12 +59,33 @@ export const STORE_PRODUCTS: StoreProduct[] = [
   {
     id: "omega",
     name: "Omega-3",
-    subtitle: "Fish Oil (Triglyceride form)",
+    subtitle: "Choose Fish or Algae",
     baseImage: "/products/omega.png",
-    bullets: ["Hjerte & hjerne", "Triglyserid-form", "God biotilgjengelighet"],
+    bullets: ["Heart & Brain", "Triglyceride form", "Superior absorption"],
     description:
-      "Premium Omega-3 som del av Core Fats. Et enkelt tillegg for deg som vil sikre fettsyre-delen av systemet.",
-    variants: [{ id: "omega", label: "Omega-3", priceNok: 0 }],
+      "Premium Omega-3 som del av Core Fats. Velg Fish (fiskeolje) eller Algae (algeolje) basert på preferanse.",
+    variants: [
+      {
+        id: "omega-fish",
+        label: "Fish",
+        subtitle: "Fish Oil (Triglyceride form)",
+        priceNok: 0,
+        image: "/products/omega.png",
+        bullets: ["Heart & Brain", "Triglyceride form", "Superior absorption"],
+        description:
+          "Omega-3 Complete+ (Fish): triglyceride fish oil. Et enkelt tillegg for deg som vil sikre fettsyre-delen av systemet.",
+      },
+      {
+        id: "omega-algae",
+        label: "Algae",
+        subtitle: "Algae Oil (Triglyceride form)",
+        priceNok: 0,
+        image: "/products/algae.png",
+        bullets: ["Heart & Brain", "Triglyceride form", "Superior absorption"],
+        description:
+          "Omega-3 Complete+ (Algae): algeolje som alternativ til fisk. Samme enkle rutine – velg varianten som passer deg best.",
+      },
+    ],
   },
 
   // ✅ Hydration som 1 produkt med 2 varianter

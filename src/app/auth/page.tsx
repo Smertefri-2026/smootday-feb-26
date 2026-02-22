@@ -39,7 +39,7 @@ export default function UnlockPage() {
           className="text-3xl tracking-wide"
           style={{ fontFamily: "var(--font-ranchers)", color: "var(--ink)" }}
         >
-          Smooday
+          Smootday
         </div>
 
         <h1
