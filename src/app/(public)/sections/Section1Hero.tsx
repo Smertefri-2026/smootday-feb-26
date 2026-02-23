@@ -21,7 +21,7 @@ export default function Section1Hero() {
         key: "viblir",
         node: <Section1aViblir />,
         imageSrc: "/Section1aViblir.png",
-        imageAlt: "Smoday – Essentials System",
+        imageAlt: "SmoDay – Essentials System",
         imageSide: "left",
         caption: "Essentials System – en enkel måte å sikre det viktigste hver dag.",
       },
@@ -29,9 +29,9 @@ export default function Section1Hero() {
         key: "om",
         node: <Section1bOm />,
         imageSrc: "/Section1bOm.png",
-        imageAlt: "Smoday – kvalitet og utvikling",
+        imageAlt: "SmoDay – kvalitet og utvikling",
         imageSide: "right",
-        caption: "Kvalitet, dokumentasjon og stabil produksjon – fundamentet i Smoday.",
+        caption: "Kvalitet, dokumentasjon og stabil produksjon – fundamentet i SmoDay.",
       },
     ],
     []
@@ -64,7 +64,7 @@ export default function Section1Hero() {
       <div className="relative w-full overflow-hidden rounded-3xl aspect-[4/3] lg:aspect-[4/3] lg:max-h-[280px]">
         <Image
           src={active.imageSrc}
-          alt={active.imageAlt ?? "Smoday"}
+          alt={active.imageAlt ?? "SmoDay"}
           fill
           className="object-cover object-center"
           priority
@@ -124,7 +124,7 @@ export default function Section1Hero() {
             borderRadius: 9999,
           }}
         >
-          Om Smoday
+          Om SmoDay
         </a>
       </div>
 

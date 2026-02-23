@@ -30,7 +30,7 @@ export default function Section1aViblir() {
       </p>
 
       <p className="mt-3 text-lg leading-8" style={{ color: "var(--slate)" }}>
-        Smoday gjør det enkelt: sjekk hva du får i deg – og hvis du mangler noe
+        SmoDay gjør det enkelt: sjekk hva du får i deg – og hvis du mangler noe
         (eller bare vil være helt trygg), hjelper vi deg å fylle på{" "}
         <b>med fokus på biotilgjengelighet</b>, altså det kroppen faktisk tar opp.
       </p>

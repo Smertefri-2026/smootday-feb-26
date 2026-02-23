@@ -5,19 +5,20 @@ export type StoreVariant = {
   label: string;
   subtitle?: string;
   priceNok: number;
-  image?: string; // optional override image
+  stockQty: number; // ✅ lager per variant
+  image?: string;
   bullets?: string[];
-  description?: string; // optional override description
+  description?: string;
 };
 
 export type StoreProduct = {
   id: string;
   name: string;
   subtitle: string;
-  baseImage: string; // default image
+  baseImage: string;
   bullets: string[];
   description: string;
-  variants?: StoreVariant[]; // if present => product has sub-choices
+  variants: StoreVariant[]; // ✅ vi bruker alltid variants (også når det bare er 1)
 };
 
 export const SUBSCRIPTION_DISCOUNT = 0.10;
@@ -38,6 +39,7 @@ export const STORE_PRODUCTS: StoreProduct[] = [
         label: "Smoothie",
         subtitle: "Ferdig drikk",
         priceNok: 0,
+        stockQty: 0, // 👈 legg inn lager her
         image: "/products/odf2.png",
         bullets: ["Aminos & Vitamins", "Minerals & Electrolytes", "Prebiotic Fiber"],
         description:
@@ -48,6 +50,7 @@ export const STORE_PRODUCTS: StoreProduct[] = [
         label: "Pulver",
         subtitle: "Bland i vann",
         priceNok: 0,
+        stockQty: 0, // 👈 legg inn lager her
         image: "/products/odf.png",
         bullets: ["Aminos & Vitamins", "Minerals & Electrolytes", "Prebiotic Fiber"],
         description:
@@ -59,118 +62,56 @@ export const STORE_PRODUCTS: StoreProduct[] = [
   {
     id: "omega",
     name: "Omega-3",
-    subtitle: "Choose Fish or Algae",
+    subtitle: "Velg fisk eller alge",
     baseImage: "/products/omega.png",
-    bullets: ["Heart & Brain", "Triglyceride form", "Superior absorption"],
+    bullets: ["Hjerte & hjerne", "God opptak", "Daglig rutine"],
     description:
-      "Premium Omega-3 som del av Core Fats. Velg Fish (fiskeolje) eller Algae (algeolje) basert på preferanse.",
+      "Omega-3 som del av Core Fats. Velg mellom fisk og alge (samme enkle rutine).",
     variants: [
       {
         id: "omega-fish",
-        label: "Fish",
-        subtitle: "Fish Oil (Triglyceride form)",
+        label: "Fisk",
+        subtitle: "Triglyserid-form",
         priceNok: 0,
+        stockQty: 0, // 👈 lager
         image: "/products/omega.png",
-        bullets: ["Heart & Brain", "Triglyceride form", "Superior absorption"],
+        bullets: ["Hjerte & hjerne", "Triglyserid-form", "God biotilgjengelighet"],
         description:
-          "Omega-3 Complete+ (Fish): triglyceride fish oil. Et enkelt tillegg for deg som vil sikre fettsyre-delen av systemet.",
+          "Omega-3 (Fisk): triglyserid-form for god biotilgjengelighet.",
       },
       {
         id: "omega-algae",
-        label: "Algae",
-        subtitle: "Algae Oil (Triglyceride form)",
+        label: "Alge",
+        subtitle: "Plantebasert",
         priceNok: 0,
-        image: "/products/algea.png",
-        bullets: ["Heart & Brain", "Triglyceride form", "Superior absorption"],
+        stockQty: 0, // 👈 lager
+        image: "/products/omega.png", // bytt når du har eget bilde
+        bullets: ["Plantebasert", "Skånsom", "Daglig rutine"],
         description:
-          "Omega-3 Complete+ (Algae): algeolje som alternativ til fisk. Samme enkle rutine – velg varianten som passer deg best.",
-      },
-    ],
-  },
-
-  // ✅ Hydration som 1 produkt med 2 varianter
-  {
-    id: "hydration",
-    name: "Hydrering",
-    subtitle: "Elektrolytter",
-    baseImage: "/products/hydration.png",
-    bullets: ["Elektrolytt-støtte", "Rask påfyll", "Til trening og varme dager"],
-    description:
-      "Hydrering er en egen del av Essentials System. Velg variant basert på behov: Zero (uten sukker) eller ORS (oral rehydration salts).",
-    variants: [
-      {
-        id: "hydration-zero",
-        label: "Hydration Zero Sugar",
-        subtitle: "Uten sukker & kalorier",
-        priceNok: 0,
-        image: "/products/hydration.png",
-        bullets: ["Elektrolytter", "0 sukker", "For hverdag & trening"],
-        description:
-          "Hydration Zero Sugar: elektrolytter uten sukker og kalorier. Passer perfekt når du vil holde det lett.",
-      },
-      {
-        id: "hydration-ors",
-        label: "Hydration ORS",
-        subtitle: "Oral Rehydration Salts",
-        priceNok: 0,
-        image: "/products/ors.png",
-        bullets: ["Rask rehydrering", "Elektrolytter & mineraler", "Effektiv formula"],
-        description:
-          "Hydration ORS: for rask og effektiv rehydrering når du trenger litt mer.",
+          "Omega-3 (Alge): plantebasert alternativ. (Oppdater bilde/tekst når dere har endelig spesifikasjon.)",
       },
     ],
   },
 
   {
-    id: "performance",
-    name: "Sport",
-    subtitle: "Styrke / Pump / Utholdenhet",
-    baseImage: "/products/performance.png",
-    bullets: ["Styrke & kraft", "Pump", "Fokus & utholdenhet"],
-    description:
-      "Performance-tillegget i systemet. For deg som vil ha en ekstra boost til økter og prestasjon.",
-    variants: [{ id: "performance", label: "Sport Performance", priceNok: 0 }],
-  },
-
-  {
-    id: "boost-him",
-    name: "BOOST for HIM",
-    subtitle: "Trace Minerals",
+    id: "trace",
+    name: "Sporstoffer",
+    subtitle: "Trace Minerals (Caps)",
     baseImage: "/products/him.png",
-    bullets: ["Kobber", "Mangan", "Sink"],
+    bullets: ["Kobber", "Mangan", "Krom", "Molybden", "Bor"],
     description:
-      "Trace mineral-kompleks utviklet som et ekstra tilskudd i Core Minerals-sporet (eller som egen kur).",
-    variants: [{ id: "boost-him", label: "BOOST for HIM", priceNok: 0 }],
-  },
-
-  // ✅ BOOST for HER som 1 produkt med 2 varianter (med/uten jern)
-  {
-    id: "boost-her",
-    name: "BOOST for HER",
-    subtitle: "Trace Minerals",
-    baseImage: "/products/her.png",
-    bullets: ["Kobber", "Mangan", "Sink", "Valgfritt: jern"],
-    description:
-      "BOOST for HER kan tas med eller uten jern, avhengig av behov. Velg variant nedenfor.",
+      "Sporstoff-stack (kapsel) som et tillegg i systemet for de som ønsker å dekke trace minerals.",
     variants: [
       {
-        id: "boost-her",
-        label: "BOOST for HER",
-        subtitle: "Uten jern",
+        id: "trace-caps",
+        label: "Sporstoffer",
+        subtitle: "Kapsel",
         priceNok: 0,
-        image: "/products/her.png",
-        bullets: ["Kobber", "Mangan", "Sink"],
-        description: "Standardvarianten uten jern.",
-      },
-      {
-        id: "boost-her-iron",
-        label: "BOOST for HER + Jern",
-        subtitle: "Med jern",
-        priceNok: 0,
-        image: "/products/iron.png",
-        bullets: ["Kobber", "Mangan", "Sink", "Jern"],
+        stockQty: 0, // 👈 lager
+        image: "/products/him.png",
+        bullets: ["Kobber", "Mangan", "Krom", "Molybden", "Bor"],
         description:
-          "Varianten med jern. (Vi legger senere inn tydelig info om hvem dette passer for.)",
+          "Trace Minerals (Caps): enkel kapsel-rutine for sporstoffer.",
       },
     ],
   },

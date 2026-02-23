@@ -12,7 +12,7 @@ export default function OmPage() {
         }}
       >
         <p className="text-sm font-semibold" style={{ color: "var(--slate)" }}>
-          Om Smoday • Hvorfor vi bygget The Essentials System
+          Om SmoDay • Hvorfor vi bygget The Essentials System
         </p>
 
         <h1
@@ -33,7 +33,7 @@ export default function OmPage() {
         </h1>
 
         <p className="mt-4 text-lg leading-8" style={{ color: "var(--slate)" }}>
-          Smoday handler om én ting: å gjøre det enkelt å bygge en stabil, daglig
+          SmoDay handler om én ting: å gjøre det enkelt å bygge en stabil, daglig
           base. Ikke som en “kur”, men som en praktisk rutine som er realistisk å
           bruke over tid.
         </p>
@@ -155,7 +155,7 @@ export default function OmPage() {
           </h2>
           <p className="mt-3 leading-7" style={{ color: "var(--slate)" }}>
             Hvis alt skulle vært kapsler, ville det blitt upraktisk for de fleste.
-            Derfor er Smoday bygget som et system:
+            Derfor er SmoDay bygget som et system:
           </p>
 
           <div className="mt-4 space-y-3" style={{ color: "var(--slate)" }}>
@@ -270,7 +270,7 @@ export default function OmPage() {
         </h2>
         <p className="mt-3 text-lg leading-8" style={{ color: "var(--slate)" }}>
           Øystein har fordypet seg i rehabilitering, smerte og hvordan en enkel,
-          praktisk hverdag kan bygges opp med smarte rutiner. Smoday er laget for
+          praktisk hverdag kan bygges opp med smarte rutiner. SmoDay er laget for
           å gjøre det lett å starte – og lett å fortsette.
         </p>
       </section>

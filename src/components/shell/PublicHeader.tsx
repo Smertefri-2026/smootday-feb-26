@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 type Item = { href: string; label: string };
 
 export default function PublicHeader({
-  brand = "Smoday",
+  brand = "SmoDay",
   links = [
     { href: "#produkter", label: "Produkter" },
     { href: "#quickcheck", label: "Sjekk" },
@@ -139,7 +139,6 @@ export default function PublicHeader({
                 {brand}
               </div>
               <div className="text-[11px] font-semibold" style={{ color: "rgba(255,255,255,0.82)" }}>
-                Essentials System
               </div>
             </div>
           </a>

@@ -3,7 +3,7 @@ export default function Section1bOm() {
   return (
     <>
       <p className="text-sm font-semibold" style={{ color: "var(--slate)" }}>
-        Om Smoday • Hvorfor vi bygger The Essentials System
+        Om SmoDay • Hvorfor vi bygger The Essentials System
       </p>
 
       <h1
@@ -30,7 +30,7 @@ export default function Section1bOm() {
       </p>
 
       <p className="mt-3 text-lg leading-8" style={{ color: "var(--slate)" }}>
-        Resultatet ble et system delt i <b>pulver</b> og <b>kapsler</b> for enkel
+        Resultatet ble et system delt i <b>pulver</b> , <b>kapsler</b> og <b>drike</b> for enkel
         daglig bruk — og <b>omega-3</b> som <b>softgel</b> for best opplevelse.
       </p>
     </>

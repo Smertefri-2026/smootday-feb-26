@@ -26,6 +26,20 @@ export function setCart(items: CartItem[]) {
   window.localStorage.setItem(KEY, JSON.stringify(items));
 }
 
+export function clearCart() {
+  if (typeof window === "undefined") return;
+  window.localStorage.removeItem(KEY);
+}
+
+/**
+ * ✅ Hvor mange av en variant finnes allerede i handlekurven?
+ */
+export function getQty(productId: string, variantId: string) {
+  return getCart()
+    .filter((x) => x.productId === productId && x.variantId === variantId)
+    .reduce((sum, x) => sum + x.qty, 0);
+}
+
 export function addToCart(next: CartItem) {
   const items = getCart();
   const i = items.findIndex(
