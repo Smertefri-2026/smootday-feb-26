@@ -1,6 +1,6 @@
 // /Users/oystein/nettsider/smootday-v2-feb-26/src/app/layout.tsx
 import type { Metadata } from "next";
-import { Inter, Sora, Ranchers } from "next/font/google";
+import { Inter, Sora, Zen_Dots } from "next/font/google";
 import "./globals.css";
 
 const fontInter = Inter({
@@ -15,10 +15,10 @@ const fontSora = Sora({
   display: "swap",
 });
 
-const fontRanchers = Ranchers({
+const fontZenDots = Zen_Dots({
   weight: "400",
   subsets: ["latin"],
-  variable: "--font-ranchers",
+  variable: "--font-zen-dots",
   display: "swap",
 });
 
@@ -32,7 +32,9 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="no">
-      <body className={`${fontInter.variable} ${fontSora.variable} ${fontRanchers.variable} antialiased`}>
+      <body
+        className={`${fontInter.variable} ${fontSora.variable} ${fontZenDots.variable} antialiased`}
+      >
         {children}
       </body>
     </html>

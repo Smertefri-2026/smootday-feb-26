@@ -32,9 +32,28 @@ export function clearCart() {
 }
 
 /**
+ * ✅ Normaliserer variantId slik at "x:sub" teller som "x" ift lager.
+ * Du kan endre dette senere hvis abonnement skal ha eget lager.
+ */
+export function normalizeVariantId(variantId: string) {
+  return variantId.replace(/:sub$/i, "");
+}
+
+/**
  * ✅ Hvor mange av en variant finnes allerede i handlekurven?
+ * default: teller både "variant" og "variant:sub" som samme variant (lager).
  */
 export function getQty(productId: string, variantId: string) {
+  const base = normalizeVariantId(variantId);
+  return getCart()
+    .filter((x) => x.productId === productId && normalizeVariantId(x.variantId) === base)
+    .reduce((sum, x) => sum + x.qty, 0);
+}
+
+/**
+ * (valgfritt) Hvis du noen ganger vil telle "eksakt" uten normalisering
+ */
+export function getQtyExact(productId: string, variantId: string) {
   return getCart()
     .filter((x) => x.productId === productId && x.variantId === variantId)
     .reduce((sum, x) => sum + x.qty, 0);
@@ -42,6 +61,8 @@ export function getQty(productId: string, variantId: string) {
 
 export function addToCart(next: CartItem) {
   const items = getCart();
+
+  // behold eksakt key for å skille linjer i kurv (sub vs one-time)
   const i = items.findIndex(
     (x) => x.productId === next.productId && x.variantId === next.variantId
   );

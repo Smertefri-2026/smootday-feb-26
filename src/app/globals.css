@@ -1,3 +1,5 @@
+/* /Users/oystein/nettsider/smootday-v2-feb-26/src/app/globals.css */
+
 @import "tailwindcss";
 
 /* =========================
@@ -37,7 +39,7 @@
   /* Fonts (fra layout.tsx) */
   --font-ui: var(--font-inter);
   --font-heading: var(--font-sora);
-  --font-brand: var(--font-ranchers);
+  --font-brand: var(--font-zen-dots); /* ✅ Zen Dots */
 }
 
 /* Tailwind v4 theme bridge */
@@ -116,8 +118,8 @@ a {
 }
 
 button {
-  font: inherit;            /* use Inter/Sora correctly */
-  line-height: 1;           /* stable */
+  font: inherit;
+  line-height: 1;
   letter-spacing: inherit;
 }
 
@@ -128,4 +130,27 @@ button {
   justify-content: center;
   line-height: 1;
   white-space: nowrap;
+}
+
+/* Hide scrollbar but keep scroll (nice for carousels) */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* =========================
+   Brand helpers (Zen Dots “bolder” look)
+   Zen Dots has only 400 weight, so we fake thickness safely.
+   ========================= */
+
+.brand-strong {
+  font-family: var(--font-brand);
+  letter-spacing: 0.03em;
+  /* subtle “double ink” to feel bolder */
+  text-shadow:
+    0.35px 0 0 currentColor,
+    -0.35px 0 0 currentColor;
 }

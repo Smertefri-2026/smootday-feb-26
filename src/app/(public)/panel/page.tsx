@@ -1,15 +1,15 @@
 import PublicHeader from "@/components/shell/PublicHeader";
 
-import Section1Hero from "@/app/(public)/sections/Section1Hero";
-import Section2Products from "@/app/(public)/sections/Section2Products";
-import Section3QuickCheck from "@/app/(public)/sections/Section3QuickCheck";
-import Section3bHowItWorks from "@/app/(public)/sections/Section3bHowItWorks";
-import Section3cWhyDifferent from "@/app/(public)/sections/Section3cWhyDifferent";
-import Section3dSubscription from "@/app/(public)/sections/Section3dSubscription";
-import Section3eTrust from "@/app/(public)/sections/Section3eTrust";
-import Section4Benefits from "@/app/(public)/sections/Section4Benefits";
-import Section5FAQ from "@/app/(public)/sections/Section5FAQ";
-import Section6Contact from "@/app/(public)/sections/Section6Contact";
+import Section1Hero from "./sections/Section1Hero";
+import Section2Products from "./sections/Section2Products";
+import Section3Om from "./sections/Section3Om";
+import Section4Viblir from "./sections/Section4Viblir";
+import Section5HowItWorks from "./sections/Section5HowItWorks";
+import Section6Subscription from "./sections/Section6Subscription";
+import Section7Trust from "./sections/Section7Trust";
+import Section8FAQ from "./sections/Section8FAQ";
+import Section6Contact from "./sections/Section9Contact";
+import Section9Contact from "./sections/Section9Contact";
 
 export default function PanelPage() {
   return (
@@ -17,24 +17,20 @@ export default function PanelPage() {
       id="top"
       className="min-h-screen"
       style={{
-        background:
-          "linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 60%, var(--bg) 100%)",
+        background: "linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 60%, var(--bg) 100%)",
       }}
     >
       <PublicHeader />
 
       <Section1Hero />
       <Section2Products />
-      <Section3QuickCheck />
-
-      <Section3bHowItWorks />
-      <Section3cWhyDifferent />
-      <Section3dSubscription />
-      <Section3eTrust />
-
-      <Section4Benefits />
-      <Section5FAQ />
-      <Section6Contact />
+      <Section3Om />
+      <Section4Viblir />
+      <Section5HowItWorks />
+      <Section6Subscription />
+      <Section7Trust />
+      <Section8FAQ />
+      <Section9Contact />
     </div>
   );
 }

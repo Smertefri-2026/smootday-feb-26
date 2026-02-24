@@ -1,93 +1,80 @@
+// /Users/oystein/nettsider/smootday-v2-feb-26/src/components/shell/PublicHeader.tsx
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
+import { getCart } from "@/lib/cart";
 
 type Item = { href: string; label: string };
 
-export default function PublicHeader({
-  brand = "SmoDay",
-  links = [
-    { href: "#produkter", label: "Produkter" },
-    { href: "#quickcheck", label: "Sjekk" },
-    { href: "#how", label: "Hvordan" },
-    { href: "#subscription", label: "Abonnement" },
-    { href: "#trust", label: "Kvalitet" },
-    { href: "#faq", label: "FAQ" },
-    { href: "#kontakt", label: "Kontakt" },
-  ],
-}: {
-  brand?: string;
-  links?: Item[];
-}) {
+export default function PublicHeader({ brand = "SmoDay" }: { brand?: string }) {
+  const pathname = usePathname();
+  const isPanel = pathname === "/panel";
+
   const [open, setOpen] = useState(false);
+  const [cartCount, setCartCount] = useState(0);
 
   const headerRef = useRef<HTMLElement | null>(null);
   const panelRef = useRef<HTMLDivElement | null>(null);
   const btnRef = useRef<HTMLButtonElement | null>(null);
 
-  const pendingHashRef = useRef<string | null>(null);
+  const centerLinks: Item[] = useMemo(
+    () => [
+      { href: "/system", label: "System" },
+      { href: "/about", label: "Om" },
+    ],
+    []
+  );
 
-  const getHeaderOffset = () => {
-    const h = headerRef.current?.getBoundingClientRect().height ?? 56;
-    return Math.round(h + 10);
-  };
-
-  const scrollToId = (id: string) => {
-    if (!id || id === "top") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-      return;
+  const refreshCartCount = () => {
+    try {
+      const items = getCart();
+      const total = items.reduce((sum, x) => sum + (x.qty || 0), 0);
+      setCartCount(total);
+    } catch {
+      setCartCount(0);
     }
-    const el = document.getElementById(id);
-    if (!el) return;
-
-    const y = el.getBoundingClientRect().top + window.scrollY - getHeaderOffset();
-    window.scrollTo({ top: Math.max(0, y), behavior: "smooth" });
-  };
-
-  const go = (href: string) => {
-    if (href === "#top") {
-      scrollToId("top");
-      return;
-    }
-    if (!href.startsWith("#")) return;
-
-    const id = href.slice(1);
-    window.history.pushState(null, "", href);
-    scrollToId(id);
-  };
-
-  const handleNav = (href: string) => (e: React.MouseEvent) => {
-    if (!href.startsWith("#")) return;
-    e.preventDefault();
-
-    if (open) {
-      pendingHashRef.current = href;
-      setOpen(false);
-      return;
-    }
-    go(href);
   };
 
   useEffect(() => {
-    if (open) return;
+    refreshCartCount();
 
-    const href = pendingHashRef.current;
-    if (!href) return;
+    const onStorage = (e: StorageEvent) => {
+      if (e.key && e.key !== "smoodday_cart_v1") return;
+      refreshCartCount();
+    };
 
-    pendingHashRef.current = null;
-    const t = window.setTimeout(() => go(href), 220);
-    return () => window.clearTimeout(t);
+    const onVisibility = () => {
+      if (document.visibilityState === "visible") refreshCartCount();
+    };
+
+    window.addEventListener("storage", onStorage);
+    document.addEventListener("visibilitychange", onVisibility);
+
+    const t = window.setInterval(refreshCartCount, 700);
+
+    return () => {
+      window.removeEventListener("storage", onStorage);
+      document.removeEventListener("visibilitychange", onVisibility);
+      window.clearInterval(t);
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [open]);
+  }, []);
 
+  const goTop = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setOpen(false);
+    window.history.pushState(null, "", "#top");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  // Close on outside click + ESC
   useEffect(() => {
     const onDown = (e: MouseEvent) => {
       if (!open) return;
       const t = e.target as Node;
-
       if (btnRef.current && btnRef.current.contains(t)) return;
       if (panelRef.current && panelRef.current.contains(t)) return;
-
       setOpen(false);
     };
 
@@ -103,11 +90,29 @@ export default function PublicHeader({
     };
   }, [open]);
 
+  // Close menu when resizing to desktop
   useEffect(() => {
     const onResize = () => window.innerWidth >= 768 && setOpen(false);
     window.addEventListener("resize", onResize);
     return () => window.removeEventListener("resize", onResize);
   }, []);
+
+  // UI styles
+  const pill =
+    "inline-flex h-10 items-center justify-center rounded-full px-4 text-sm font-extrabold transition ring-1";
+  const pillStyle = {
+    color: "rgba(255,255,255,0.95)",
+    background: "rgba(255,255,255,0.16)",
+    borderColor: "rgba(255,255,255,0.22)",
+  } as const;
+
+  const iconBtn =
+    "relative inline-flex h-10 items-center justify-center rounded-full px-4 text-sm font-extrabold transition ring-1";
+  const iconStyle = {
+    color: "rgba(255,255,255,0.95)",
+    background: "rgba(255,255,255,0.18)",
+    borderColor: "rgba(255,255,255,0.25)",
+  } as const;
 
   return (
     <header ref={headerRef} className="sticky top-0 z-50">
@@ -119,45 +124,50 @@ export default function PublicHeader({
         }}
       >
         <div className="mx-auto flex h-14 w-full max-w-6xl items-center justify-between px-6">
-          {/* Brand */}
+          {/* LEFT: Brand */}
           <a
-            href="#top"
+            href="/panel"
             onClick={(e) => {
-              e.preventDefault();
+              if (isPanel) return goTop(e);
               setOpen(false);
-              window.history.pushState(null, "", "#top");
-              window.scrollTo({ top: 0, behavior: "smooth" });
             }}
             className="flex items-center gap-3"
-            aria-label="Gå til toppen"
+            aria-label="Gå til panel"
           >
             <div className="leading-tight">
+              {/* ✅ FORCE Zen Dots by using the CSS variable directly */}
               <div
-                className="text-2xl sm:text-3xl tracking-wide leading-none"
-                style={{ fontFamily: "var(--font-ranchers)", color: "rgba(255,255,255,0.98)" }}
+                className="text-[22px] sm:text-[28px] leading-none"
+                style={{
+                  fontFamily: "var(--font-brand)",
+                  color: "rgba(255,255,255,0.98)",
+                  letterSpacing: "0.03em",
+                  textShadow:
+                    "0.45px 0 0 rgba(255,255,255,0.98), -0.45px 0 0 rgba(255,255,255,0.98)",
+                }}
               >
                 {brand}
               </div>
-              <div className="text-[11px] font-semibold" style={{ color: "rgba(255,255,255,0.82)" }}>
+
+              <div className="mt-0.5 text-[11px] font-semibold" style={{ color: "rgba(255,255,255,0.82)" }}>
+                Essentials System
               </div>
             </div>
           </a>
 
-          {/* Desktop nav */}
-          <nav className="hidden md:flex items-center gap-2">
-            {links.map((l) => (
+          {/* CENTER: System + Om */}
+          <nav className="hidden md:flex items-center justify-center gap-2 flex-1">
+            {centerLinks.map((l) => (
               <a
                 key={l.href}
                 href={l.href}
-                onClick={handleNav(l.href)}
-                className="rounded-full px-3 py-2 text-sm font-extrabold transition"
-                style={{ color: "rgba(255,255,255,0.92)" }}
+                className={pill}
+                style={pillStyle}
                 onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLAnchorElement).style.background =
-                    "rgba(255,255,255,0.18)";
+                  (e.currentTarget as HTMLAnchorElement).style.background = "rgba(255,255,255,0.22)";
                 }}
                 onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLAnchorElement).style.background = "transparent";
+                  (e.currentTarget as HTMLAnchorElement).style.background = "rgba(255,255,255,0.16)";
                 }}
               >
                 {l.label}
@@ -165,23 +175,51 @@ export default function PublicHeader({
             ))}
           </nav>
 
-          {/* Mobile toggle */}
-          <button
-            ref={btnRef}
-            className="md:hidden inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-extrabold transition ring-1"
-            style={{
-              color: "rgba(255,255,255,0.95)",
-              background: "rgba(255,255,255,0.18)",
-              borderColor: "rgba(255,255,255,0.25)",
-            }}
-            onClick={() => setOpen((v) => !v)}
-            aria-expanded={open}
-            aria-controls="mobile-menu"
-            aria-label={open ? "Lukk meny" : "Åpne meny"}
-          >
-            <span className="text-base leading-none">{open ? "✕" : "≡"}</span>
-            <span>{open ? "Lukk" : "Meny"}</span>
-          </button>
+          {/* RIGHT: Cart + Mobile toggle */}
+          <div className="flex items-center gap-2">
+            <a
+              href="/cart"
+              className={iconBtn}
+              style={iconStyle}
+              title="Handlekurv"
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLAnchorElement).style.background = "rgba(255,255,255,0.26)";
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLAnchorElement).style.background = "rgba(255,255,255,0.18)";
+              }}
+            >
+              🛒 <span className="ml-2 hidden sm:inline">Handlekurv</span>
+
+              {cartCount > 0 ? (
+                <span
+                  className="absolute -top-1 -right-1 min-w-6 h-6 px-2 rounded-full text-xs font-extrabold flex items-center justify-center"
+                  style={{
+                    background: "rgba(255,255,255,0.92)",
+                    color: "var(--ink)",
+                    boxShadow: "0 8px 18px rgba(0,0,0,0.18)",
+                    border: "1px solid rgba(0,0,0,0.06)",
+                  }}
+                  aria-label={`${cartCount} i handlekurven`}
+                >
+                  {cartCount}
+                </span>
+              ) : null}
+            </a>
+
+            <button
+              ref={btnRef}
+              className="md:hidden inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-extrabold transition ring-1"
+              style={iconStyle}
+              onClick={() => setOpen((v) => !v)}
+              aria-expanded={open}
+              aria-controls="mobile-menu"
+              aria-label={open ? "Lukk meny" : "Åpne meny"}
+            >
+              <span className="text-base leading-none">{open ? "✕" : "≡"}</span>
+              <span>{open ? "Lukk" : "Meny"}</span>
+            </button>
+          </div>
         </div>
 
         {/* Mobile menu */}
@@ -197,21 +235,35 @@ export default function PublicHeader({
         >
           <div className="mx-auto w-full max-w-6xl px-6 py-3">
             <div className="grid gap-2">
-              {links.map((l) => (
+              <a
+                href="/panel"
+                onClick={() => setOpen(false)}
+                className="rounded-2xl px-4 py-3 text-center font-extrabold transition ring-1"
+                style={pillStyle}
+              >
+                Panel
+              </a>
+
+              {centerLinks.map((l) => (
                 <a
                   key={l.href}
                   href={l.href}
-                  onClick={handleNav(l.href)}
+                  onClick={() => setOpen(false)}
                   className="rounded-2xl px-4 py-3 text-center font-extrabold transition ring-1"
-                  style={{
-                    color: "rgba(255,255,255,0.95)",
-                    background: "rgba(255,255,255,0.16)",
-                    borderColor: "rgba(255,255,255,0.22)",
-                  }}
+                  style={pillStyle}
                 >
                   {l.label}
                 </a>
               ))}
+
+              <a
+                href="/cart"
+                onClick={() => setOpen(false)}
+                className="rounded-2xl px-4 py-3 text-center font-extrabold transition ring-1"
+                style={pillStyle}
+              >
+                🛒 Handlekurv{cartCount > 0 ? ` (${cartCount})` : ""}
+              </a>
             </div>
           </div>
         </div>

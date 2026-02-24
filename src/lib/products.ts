@@ -12,13 +12,13 @@ export type StoreVariant = {
 };
 
 export type StoreProduct = {
-  id: string;
+  id: string; // ✅ odf | omega | trace | bundle
   name: string;
   subtitle: string;
   baseImage: string;
   bullets: string[];
   description: string;
-  variants: StoreVariant[]; // ✅ vi bruker alltid variants (også når det bare er 1)
+  variants: StoreVariant[]; // ✅ alltid variants
 };
 
 export const SUBSCRIPTION_DISCOUNT = 0.10;
@@ -27,11 +27,15 @@ export const STORE_PRODUCTS: StoreProduct[] = [
   {
     id: "odf",
     name: "Essentials System ODF",
-    subtitle: "Complete Daily Nutrition",
-    baseImage: "/products/odf.png",
-    bullets: ["Aminos & Vitamins", "Minerals & Electrolytes", "Prebiotic Fiber"],
+    subtitle: "Daglig næringsgrunnmur",
+    baseImage: "/products/odf4.png",
+    bullets: [
+      "Daglig “foundation” i systemet",
+      "Designet for enkel rutine",
+      "Fokus på kvalitet & stabil produksjon",
+    ],
     description:
-      "Vårt hovedprodukt – designet som fundamentet i Essentials System. Laget for å gjøre det enkelt å dekke det viktigste hver dag, med fokus på kvalitet og biotilgjengelighet.",
+      "ODF er fundamentet i The Essentials System. Tanken er enkel: gjøre det lettere å dekke det kroppen trenger jevnlig, uten å måtte overkomplisere hverdagen. Vi bygger systemet rundt få, gjennomtenkte valg – og ODF er den daglige basen som resten av rutinen kan bygges på. Velg Smoothie når du vil ha det enklest mulig, eller Pulver når du vil blande selv og ha maksimal fleksibilitet.",
     // ✅ Smoothie først = default i UI
     variants: [
       {
@@ -40,10 +44,10 @@ export const STORE_PRODUCTS: StoreProduct[] = [
         subtitle: "Ferdig drikk",
         priceNok: 0,
         stockQty: 0, // 👈 legg inn lager her
-        image: "/products/odf2.png",
-        bullets: ["Aminos & Vitamins", "Minerals & Electrolytes", "Prebiotic Fiber"],
+        image: "/products/odf5.png",
+        bullets: ["Raskeste rutinen", "Klar på sekunder", "Samme “foundation”-idé som pulver"],
         description:
-          "ODF Smoothie: ferdig drikk med Essentials System ODF – for deg som vil ha den enkleste rutinen (klar på sekunder).",
+          "ODF Smoothie er varianten for deg som vil ha lavest friksjon i hverdagen. Ferdig drikk gjør det enklere å gjennomføre rutinen konsekvent – spesielt når du har dårlig tid, reiser, eller bare vil at det skal være “idiotsikkert”.",
       },
       {
         id: "odf-powder",
@@ -51,10 +55,10 @@ export const STORE_PRODUCTS: StoreProduct[] = [
         subtitle: "Bland i vann",
         priceNok: 0,
         stockQty: 0, // 👈 legg inn lager her
-        image: "/products/odf.png",
-        bullets: ["Aminos & Vitamins", "Minerals & Electrolytes", "Prebiotic Fiber"],
+        image: "/products/odf4.png",
+        bullets: ["Fleksibelt (bland selv)", "Praktisk for lagring/transport", "Kan også brukes i smoothie hjemme"],
         description:
-          "ODF Pulver: blandes i vann (eller i smoothie hjemme). Perfekt for deg som vil ha lavest frakt/lagring og full fleksibilitet.",
+          "ODF Pulver er varianten for deg som vil blande selv. Den passer godt hvis du vil ha full kontroll over blanding, eller ønsker en praktisk løsning for lagring og transport. Du kan blande i vann – eller bruke pulveret i smoothie hjemme.",
       },
     ],
   },
@@ -62,45 +66,35 @@ export const STORE_PRODUCTS: StoreProduct[] = [
   {
     id: "omega",
     name: "Omega-3",
-    subtitle: "Velg fisk eller alge",
-    baseImage: "/products/omega.png",
-    bullets: ["Hjerte & hjerne", "God opptak", "Daglig rutine"],
+    subtitle: "Softgel i daglig rutine",
+    baseImage: "/products/omega2.png",
+    bullets: ["Fast del av rutinen", "Godt opptak", "Enkelt å følge over tid"],
     description:
-      "Omega-3 som del av Core Fats. Velg mellom fisk og alge (samme enkle rutine).",
+      "Omega-3 er den “enkle, stabile” delen av systemet som mange ønsker i en rutine: én klar vane, samme format hver dag. Vi bruker softgels for en mer forutsigbar opplevelse (og for å holde drikke/pulver fri for smak og lukt). Dette produktet er laget for å passe inn i system-tanken: gjøre det praktisk å gjennomføre rutinen, uke etter uke.",
     variants: [
       {
-        id: "omega-fish",
-        label: "Fisk",
-        subtitle: "Triglyserid-form",
+        id: "omega",
+        label: "Omega-3",
+        subtitle: "Softgel",
         priceNok: 0,
         stockQty: 0, // 👈 lager
-        image: "/products/omega.png",
-        bullets: ["Hjerte & hjerne", "Triglyserid-form", "God biotilgjengelighet"],
+        image: "/products/omega2.png",
+        bullets: ["Softgel-format", "Enkel daglig vane", "Passer i systemrutinen"],
         description:
-          "Omega-3 (Fisk): triglyserid-form for god biotilgjengelighet.",
-      },
-      {
-        id: "omega-algae",
-        label: "Alge",
-        subtitle: "Plantebasert",
-        priceNok: 0,
-        stockQty: 0, // 👈 lager
-        image: "/products/omega.png", // bytt når du har eget bilde
-        bullets: ["Plantebasert", "Skånsom", "Daglig rutine"],
-        description:
-          "Omega-3 (Alge): plantebasert alternativ. (Oppdater bilde/tekst når dere har endelig spesifikasjon.)",
+          "Omega-3 softgel er laget for å være en friksjonsfri vane i systemet. Målet er ikke “hype”, men en praktisk, repeterbar rutine som er lett å holde.",
       },
     ],
   },
 
+  // ✅ NB: id må være "trace" for å matche bundle-logikken i Section2Products.tsx
   {
     id: "trace",
     name: "Sporstoffer",
-    subtitle: "Trace Minerals (Caps)",
-    baseImage: "/products/him.png",
+    subtitle: "Trace Minerals (kapsel)",
+    baseImage: "/products/trace.png",
     bullets: ["Kobber", "Mangan", "Krom", "Molybden", "Bor"],
     description:
-      "Sporstoff-stack (kapsel) som et tillegg i systemet for de som ønsker å dekke trace minerals.",
+      "Sporstoffer (trace minerals) er små mengder – men ofte en del av det folk ønsker å “ha kontroll på” i en systematisk rutine. Vi har derfor laget en kapselvariant som er enkel å ta, og som passer inn i Essentials System-tanken: få, tydelige valg som er lette å gjennomføre.",
     variants: [
       {
         id: "trace-caps",
@@ -108,10 +102,34 @@ export const STORE_PRODUCTS: StoreProduct[] = [
         subtitle: "Kapsel",
         priceNok: 0,
         stockQty: 0, // 👈 lager
-        image: "/products/him.png",
-        bullets: ["Kobber", "Mangan", "Krom", "Molybden", "Bor"],
+        image: "/products/trace.png",
+        bullets: ["Kapsel-format", "Enkel rutine", "Trace mineral-stack"],
         description:
-          "Trace Minerals (Caps): enkel kapsel-rutine for sporstoffer.",
+          "Sporstoffer kapsel er designet for enkelhet: én rutine, samme format. Dette er for deg som vil dekke “trace minerals”-delen i systemet på en ryddig måte.",
+      },
+    ],
+  },
+
+  // ✅ Pakke som eget “produktvalg” (pill etter Sporstoffer)
+  {
+    id: "bundle",
+    name: "Pakker",
+    subtitle: "ODF + Omega-3 + Sporstoffer",
+    baseImage: "/products/system1.png",
+    bullets: ["3-produkts core stack", "Pakkerabatt", "Enklest å starte med"],
+    description:
+      "Systempakken er laget for deg som vil starte riktig – med hele “core stacken” i én bestilling: ODF (valgt variant), Omega-3 og Sporstoffer. Lager sjekkes på alle tre delprodukter før du kan legge pakken i handlekurv.",
+    variants: [
+      {
+        id: "bundle-core",
+        label: "Systempakke",
+        subtitle: "3 produkter",
+        priceNok: 0, // 👈 pakkepris beregnes i UI (foreløpig). Kan settes senere når dere har priser.
+        stockQty: 0, // 👈 ikke brukt – vi styrer lager via delvarene i UI
+        image: "/products/system1.png",
+        bullets: ["ODF + Omega-3 + Sporstoffer", "Pakkerabatt", "Daglig rutine"],
+        description:
+          "Inkluderer ODF (Smoothie/Pulver), Omega-3 og Sporstoffer. Dette er for deg som vil ha en enkel, komplett start på Essentials System-rutinen.",
       },
     ],
   },
