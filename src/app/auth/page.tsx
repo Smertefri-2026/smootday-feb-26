@@ -14,23 +14,20 @@ export default function UnlockPage() {
       return;
     }
 
-    // ✅ Cookie som funker på localhost + vercel + eget domene
-    const maxAge = 60 * 60 * 24 * 7;
+    const maxAge = 60 * 60 * 24 * 30;
     const isHttps =
       typeof window !== "undefined" && window.location.protocol === "https:";
 
-    // NB: IKKE bruk domain=... her (det er det som ødelegger)
     document.cookie = [
       `smooday_preview=1`,
       `Path=/`,
       `Max-Age=${maxAge}`,
       `SameSite=Lax`,
-      isHttps ? "Secure" : "", // Secure kun på https
+      isHttps ? "Secure" : "",
     ]
       .filter(Boolean)
       .join("; ");
 
-    // ✅ send inn i gated område
     window.location.href = "/panel";
   };
 
@@ -47,8 +44,8 @@ export default function UnlockPage() {
         style={{ background: "var(--surface)", borderColor: "var(--line)" }}
       >
         <div
-          className="text-3xl tracking-wide"
-          style={{ fontFamily: "var(--font-ranchers)", color: "var(--ink)" }}
+          className="brand-strong text-3xl tracking-wide"
+          style={{ color: "var(--ink)" }}
         >
           SmoDay
         </div>
@@ -64,7 +61,10 @@ export default function UnlockPage() {
           Skriv passordet for å åpne panel-siden.
         </p>
 
-        <label className="mt-6 block text-sm font-semibold" style={{ color: "var(--slate)" }}>
+        <label
+          className="mt-6 block text-sm font-semibold"
+          style={{ color: "var(--slate)" }}
+        >
           Passord
         </label>
 

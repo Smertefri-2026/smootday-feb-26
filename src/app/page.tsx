@@ -20,8 +20,7 @@ export default function Home() {
         <div className="flex items-start justify-between gap-4">
           <div
             className="text-4xl tracking-wide"
-            style={{ fontFamily: "var(--font-ranchers)", color: "var(--ink)" }}
-          >
+style={{ fontFamily: "var(--font-brand)", color: "var(--ink)" }}          >
             SmoDay
           </div>
 
