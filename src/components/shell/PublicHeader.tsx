@@ -150,7 +150,6 @@ export default function PublicHeader({ brand = "SmoDay" }: { brand?: string }) {
               </div>
 
               <div className="mt-0.5 text-[11px] font-semibold" style={{ color: "rgba(255,255,255,0.82)" }}>
-                Essentials System
               </div>
             </div>
           </a>
