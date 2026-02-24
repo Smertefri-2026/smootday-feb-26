@@ -31,12 +31,11 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="no">
-      <body
-        className={`${fontInter.variable} ${fontSora.variable} ${fontZenDots.variable} antialiased`}
-      >
-        {children}
-      </body>
+    <html
+      lang="no"
+      className={`${fontInter.variable} ${fontSora.variable} ${fontZenDots.variable}`}
+    >
+      <body className="antialiased">{children}</body>
     </html>
   );
 }
