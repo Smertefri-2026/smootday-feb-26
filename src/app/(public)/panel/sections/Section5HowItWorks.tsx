@@ -43,8 +43,7 @@ export default function Section5HowItWorks() {
             <div className="text-sm font-semibold" style={{ color: "var(--slate)" }}>
               {s.t}
             </div>
-            <p className="mt-2 text-sm leading-6" style={{ color: "var(--slate)" }}>
-              {s.d}
+<p className="mt-2 text-base leading-7" style={{ color: "var(--slate)" }}>              {s.d}
             </p>
           </div>
         ))}

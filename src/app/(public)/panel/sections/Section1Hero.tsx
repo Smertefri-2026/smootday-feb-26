@@ -29,7 +29,7 @@ export default function Section1Hero() {
           produsere selv (eller ikke i nok mengder). Derfor må de komme fra mat — og
           for mange kan tilskudd være en praktisk måte å sikre kontinuitet i hverdagen.
           Vi har samlet det viktigste i en enkel rutine. Sammen med et sunt kosthold
-          gjør systemet det lettere å dekke det essensielle — uten unødvendig støy.
+          gjør systemet det lettere å dekke det essensielle.
         </p>
 
         <div className="mt-5 flex flex-col sm:flex-row gap-3">

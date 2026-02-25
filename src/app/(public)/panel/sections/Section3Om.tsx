@@ -33,29 +33,23 @@ export default function Section3Om() {
             fordi vi så hvor viktig det er å ta vare på kroppen – i praksis.
           </h2>
 
-          <p className="mt-4 text-lg leading-8" style={{ color: "var(--slate)" }}>
-            Midt i en pandemi ble det tydelig for mange hvor mye <b>grunnmuren</b>{" "}
-            betyr: nok søvn, fysisk aktivitet, næringsrik mat – og en rutine som faktisk
-            er mulig å følge over tid. Vi stilte oss et enkelt spørsmål:{" "}
-            <b>Hvordan kan flest mulig gjøre det enklere å støtte kroppen i hverdagen?</b>
-          </p>
+        <p className="mt-4 text-lg leading-8" style={{ color: "var(--slate)" }}>
+  Under koronaen ble det tydelig hvor viktig <b>grunnmuren</b> er i praksis:
+  søvn, aktivitet, næringsrik mat – og rutiner som faktisk er mulig å følge over tid.
+  Vi stilte oss spørsmålet: <b>Hvordan kan vi gjøre det enklere å støtte kroppen – hver dag?</b>
+</p>
 
-          <p className="mt-3 text-lg leading-8" style={{ color: "var(--slate)" }}>
-            Vi landet på en idé vi kunne stå inne for: et system som fokuserer på{" "}
-            <b>essensielle næringsstoffer</b> – altså byggesteiner kroppen trenger jevnlig,
-            men som den ikke alltid kan produsere selv (eller nok av). Løsningen er ikke
-            “mer og mer”, men å samle det viktigste kroppen faktisk trenger – og gjøre det
-            på en måte som tar hensyn til <b>biotilgjengelighet</b>, altså det kroppen faktisk{" "}
-            klarer å ta opp og bruke.
-          </p>
+<p className="mt-3 text-lg leading-8" style={{ color: "var(--slate)" }}>
+  Svaret ble et system bygget rundt <b>essensielle næringsstoffer</b> – byggesteiner kroppen trenger jevnlig,
+  men som den ikke alltid kan produsere selv (eller nok av). Vi fokuserer på <b>det viktigste</b>,
+  og på <b>biotilgjengelighet</b> – altså hva kroppen faktisk tar opp og bruker.
+</p>
 
-          <p className="mt-3 text-lg leading-8" style={{ color: "var(--slate)" }}>
-            Derfor har vi brukt år på å besøke hundrevis av produsenter internasjonalt
-            for å finne de få som leverer <b>kvalitet</b>, <b>dokumentasjon</b> og{" "}
-            <b>stabil produksjon</b>. Resultatet ble <b>det essensielle systemet</b>: et system delt i{" "}
-            <b>pulver</b>, <b>kapsler</b> og <b>drikk</b> for enkel daglig bruk — og{" "}
-            <b>omega-3</b> som <b>mykkapsel</b> for best opplevelse.
-          </p>
+<p className="mt-3 text-lg leading-8" style={{ color: "var(--slate)" }}>
+  Derfor har vi brukt år på å finne produsenter som leverer <b>kvalitet</b>, <b>dokumentasjon</b> og
+  <b>stabil produksjon</b>. Resultatet er The Essentials System – et enkelt oppsett med 
+  <b> drikk/pulver</b>, <b>kapsler</b> og <b>omega-3 som softgel</b> for best opplevelse.
+</p>
 
           <div className="mt-6 flex flex-col sm:flex-row gap-3">
             <a
@@ -68,7 +62,7 @@ export default function Section3Om() {
                 borderRadius: 9999,
               }}
             >
-              Les mer om oss
+              Les hele historien
             </a>
           </div>
 

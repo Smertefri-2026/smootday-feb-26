@@ -1,9 +1,8 @@
 "use client";
 
-// /Users/oystein/nettsider/smootday-v2-feb-26/src/app/cart/page.tsx
+// /Users/oystein/nettsider/smootday-v2-feb-26/src/app/(public)/cart/page.tsx
 
 import { useEffect, useState } from "react";
-import PublicHeader from "@/components/shell/PublicHeader";
 import {
   CartItem,
   cartTotal,
@@ -24,8 +23,6 @@ export default function CartPage() {
 
   return (
     <div id="top" className="min-h-screen">
-      <PublicHeader />
-
       <main className="mx-auto w-full max-w-4xl px-6 py-10">
         <h1
           className="text-2xl sm:text-3xl font-extrabold"
@@ -104,7 +101,11 @@ export default function CartPage() {
           <a
             href="/"
             className="h-12 inline-flex items-center justify-center rounded-full px-6 text-sm font-extrabold ring-1"
-            style={{ background: "var(--surface)", color: "var(--ink)", borderColor: "var(--line)" }}
+            style={{
+              background: "var(--surface)",
+              color: "var(--ink)",
+              borderColor: "var(--line)",
+            }}
           >
             Fortsett å handle
           </a>

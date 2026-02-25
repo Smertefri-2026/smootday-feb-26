@@ -1,9 +1,8 @@
 "use client";
 
-// /Users/oystein/nettsider/smootday-v2-feb-26/src/app/checkout/page.tsx
+// /Users/oystein/nettsider/smootday-v2-feb-26/src/app/(public)/checkout/page.tsx
 
 import { useEffect, useState } from "react";
-import PublicHeader from "@/components/shell/PublicHeader";
 import { CartItem, cartTotal, formatNok, getCart } from "@/lib/cart";
 
 export default function CheckoutPage() {
@@ -13,8 +12,6 @@ export default function CheckoutPage() {
 
   return (
     <div id="top" className="min-h-screen">
-      <PublicHeader />
-
       <main className="mx-auto w-full max-w-4xl px-6 py-10">
         <h1
           className="text-2xl sm:text-3xl font-extrabold"
@@ -46,7 +43,10 @@ export default function CheckoutPage() {
 
             <div className="mt-4 grid gap-2">
               {items.map((x) => (
-                <div key={`${x.productId}:${x.variantId}`} className="flex justify-between text-sm">
+                <div
+                  key={`${x.productId}:${x.variantId}`}
+                  className="flex justify-between text-sm"
+                >
                   <span style={{ color: "var(--slate)" }}>
                     {x.variantLabel} × {x.qty}
                   </span>

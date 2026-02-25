@@ -9,10 +9,11 @@ type Item = { href: string; label: string };
 
 export default function PublicHeader({ brand = "SmoDay" }: { brand?: string }) {
   const pathname = usePathname();
-  const isPanel = pathname === "/panel";
+  const isHome = pathname === "/";
 
   const [open, setOpen] = useState(false);
   const [cartCount, setCartCount] = useState(0);
+  const [scrolled, setScrolled] = useState(false);
 
   const headerRef = useRef<HTMLElement | null>(null);
   const panelRef = useRef<HTMLDivElement | null>(null);
@@ -21,6 +22,8 @@ export default function PublicHeader({ brand = "SmoDay" }: { brand?: string }) {
   const centerLinks: Item[] = useMemo(
     () => [
       { href: "/system", label: "System" },
+      { href: "/products", label: "Produkter" },
+      { href: "/benefits", label: "Helse & FAQ" },
       { href: "/about", label: "Om" },
     ],
     []
@@ -59,6 +62,14 @@ export default function PublicHeader({ brand = "SmoDay" }: { brand?: string }) {
       window.clearInterval(t);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // ✅ Glass + shadow when scrolling
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   const goTop = (e: React.MouseEvent) => {
@@ -115,27 +126,32 @@ export default function PublicHeader({ brand = "SmoDay" }: { brand?: string }) {
   } as const;
 
   return (
-    <header ref={headerRef} className="sticky top-0 z-50">
+    <header ref={headerRef} className="fixed top-0 left-0 right-0 z-50">
       <div
-        className="border-b backdrop-blur"
+        className="border-b backdrop-blur transition-[box-shadow,background-color,border-color] duration-200"
         style={{
-          background: "var(--g-primary)",
-          borderColor: "rgba(255,255,255,0.18)",
+          // glass look: a bit more transparent when scrolled
+          background: scrolled
+            ? "rgba(16, 163, 74, 0.72)" // green glass (matches --g-primary vibe)
+            : "var(--g-primary)",
+          borderColor: scrolled
+            ? "rgba(255,255,255,0.22)"
+            : "rgba(255,255,255,0.18)",
+          boxShadow: scrolled ? "0 18px 38px rgba(2, 6, 23, 0.18)" : "none",
         }}
       >
         <div className="mx-auto flex h-14 w-full max-w-6xl items-center justify-between px-6">
-          {/* LEFT: Brand */}
+          {/* LEFT: Brand -> Home */}
           <a
             href="/panel"
             onClick={(e) => {
-              if (isPanel) return goTop(e);
+              if (isHome) return goTop(e);
               setOpen(false);
             }}
             className="flex items-center gap-3"
-            aria-label="Gå til panel"
+            aria-label="Gå til hjem"
           >
             <div className="leading-tight">
-              {/* ✅ FORCE Zen Dots by using the CSS variable directly */}
               <div
                 className="text-[22px] sm:text-[28px] leading-none"
                 style={{
@@ -148,13 +164,10 @@ export default function PublicHeader({ brand = "SmoDay" }: { brand?: string }) {
               >
                 {brand}
               </div>
-
-              <div className="mt-0.5 text-[11px] font-semibold" style={{ color: "rgba(255,255,255,0.82)" }}>
-              </div>
             </div>
           </a>
 
-          {/* CENTER: System + Om */}
+          {/* CENTER */}
           <nav className="hidden md:flex items-center justify-center gap-2 flex-1">
             {centerLinks.map((l) => (
               <a
@@ -163,10 +176,12 @@ export default function PublicHeader({ brand = "SmoDay" }: { brand?: string }) {
                 className={pill}
                 style={pillStyle}
                 onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLAnchorElement).style.background = "rgba(255,255,255,0.22)";
+                  (e.currentTarget as HTMLAnchorElement).style.background =
+                    "rgba(255,255,255,0.22)";
                 }}
                 onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLAnchorElement).style.background = "rgba(255,255,255,0.16)";
+                  (e.currentTarget as HTMLAnchorElement).style.background =
+                    "rgba(255,255,255,0.16)";
                 }}
               >
                 {l.label}
@@ -174,18 +189,39 @@ export default function PublicHeader({ brand = "SmoDay" }: { brand?: string }) {
             ))}
           </nav>
 
-          {/* RIGHT: Cart + Mobile toggle */}
+          {/* RIGHT */}
           <div className="flex items-center gap-2">
+            {/* Contact */}
+            <a
+              href="/contact"
+              className={iconBtn}
+              style={iconStyle}
+              title="Kontakt"
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLAnchorElement).style.background =
+                  "rgba(255,255,255,0.26)";
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLAnchorElement).style.background =
+                  "rgba(255,255,255,0.18)";
+              }}
+            >
+              ✉️ <span className="ml-2 hidden sm:inline">Kontakt</span>
+            </a>
+
+            {/* Cart */}
             <a
               href="/cart"
               className={iconBtn}
               style={iconStyle}
               title="Handlekurv"
               onMouseEnter={(e) => {
-                (e.currentTarget as HTMLAnchorElement).style.background = "rgba(255,255,255,0.26)";
+                (e.currentTarget as HTMLAnchorElement).style.background =
+                  "rgba(255,255,255,0.26)";
               }}
               onMouseLeave={(e) => {
-                (e.currentTarget as HTMLAnchorElement).style.background = "rgba(255,255,255,0.18)";
+                (e.currentTarget as HTMLAnchorElement).style.background =
+                  "rgba(255,255,255,0.18)";
               }}
             >
               🛒 <span className="ml-2 hidden sm:inline">Handlekurv</span>
@@ -206,6 +242,7 @@ export default function PublicHeader({ brand = "SmoDay" }: { brand?: string }) {
               ) : null}
             </a>
 
+            {/* Mobile toggle */}
             <button
               ref={btnRef}
               className="md:hidden inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-extrabold transition ring-1"
@@ -228,19 +265,19 @@ export default function PublicHeader({ brand = "SmoDay" }: { brand?: string }) {
           className={[
             "md:hidden overflow-hidden border-t",
             "transition-[max-height,opacity] duration-200",
-            open ? "max-h-80 opacity-100" : "max-h-0 opacity-0",
+            open ? "max-h-96 opacity-100" : "max-h-0 opacity-0",
           ].join(" ")}
           style={{ borderColor: "rgba(255,255,255,0.18)" }}
         >
           <div className="mx-auto w-full max-w-6xl px-6 py-3">
             <div className="grid gap-2">
               <a
-                href="/panel"
+                href="/"
                 onClick={() => setOpen(false)}
                 className="rounded-2xl px-4 py-3 text-center font-extrabold transition ring-1"
                 style={pillStyle}
               >
-                Panel
+                Hjem
               </a>
 
               {centerLinks.map((l) => (
@@ -254,6 +291,15 @@ export default function PublicHeader({ brand = "SmoDay" }: { brand?: string }) {
                   {l.label}
                 </a>
               ))}
+
+              <a
+                href="/contact"
+                onClick={() => setOpen(false)}
+                className="rounded-2xl px-4 py-3 text-center font-extrabold transition ring-1"
+                style={pillStyle}
+              >
+                ✉️ Kontakt
+              </a>
 
               <a
                 href="/cart"

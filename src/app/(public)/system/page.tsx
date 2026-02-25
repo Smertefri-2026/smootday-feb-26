@@ -1,4 +1,4 @@
-import PublicHeader from "@/components/shell/PublicHeader";
+// /Users/oystein/nettsider/smootday-v2-feb-26/src/app/(public)/system/page.tsx
 
 import S01SystemHero from "./sections/01SystemHero";
 import S02HvaErEssensielt from "./sections/02HvaErEssensielt";
@@ -20,8 +20,6 @@ export default function SystemPage() {
           "linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 60%, var(--bg) 100%)",
       }}
     >
-      <PublicHeader />
-
       <S01SystemHero />
       <S02HvaErEssensielt />
       <S03CoreStack />

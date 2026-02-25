@@ -149,8 +149,41 @@ button {
 .brand-strong {
   font-family: var(--font-brand);
   letter-spacing: 0.03em;
-  /* subtle “double ink” to feel bolder */
   text-shadow:
     0.35px 0 0 currentColor,
     -0.35px 0 0 currentColor;
+}
+
+/* =========================
+   Chip carousel helpers
+   ========================= */
+
+/* Horizontal chips row: swipe on mobile, snap nice */
+.chip-row {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding-bottom: 2px; /* prevents “cut” shadows on iOS */
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+.chip-row > * {
+  scroll-snap-align: start;
+}
+
+/* Arrow button used next to chip rows on desktop */
+.chip-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  width: 40px;
+  border-radius: 9999px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.70);
+  color: var(--ink);
+  user-select: none;
+}
+.chip-arrow:active {
+  transform: translateY(1px);
 }

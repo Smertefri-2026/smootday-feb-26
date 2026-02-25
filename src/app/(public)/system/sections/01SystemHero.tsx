@@ -43,13 +43,13 @@ export default function S01SystemHero() {
 
             <div className="mt-6 grid gap-2 text-sm" style={{ color: "var(--ink)" }}>
               <div>• Et system (ikke et “mirakelprodukt”)</div>
-              <div>• Kun essensielt – ikke støy</div>
+              <div>• Kun essensielt</div>
               <div>• Bygget for å være enkelt å følge hver dag</div>
             </div>
           </div>
 
           {/* IMAGE (right on desktop, bottom on mobile) */}
-          <div className="order-last lg:order-none">
+          <div className="order-last lg:order-0">
             <div
               className="rounded-3xl border p-3 sm:p-4"
               style={{
@@ -58,7 +58,7 @@ export default function S01SystemHero() {
                 boxShadow: "var(--shadow-soft)",
               }}
             >
-              <div className="relative w-full overflow-hidden rounded-3xl aspect-[4/3] lg:aspect-[3/4]">
+              <div className="relative w-full overflow-hidden rounded-3xl aspect-4/3 lg:aspect-3/4">
                 <Image
                   src="/products/system1.png"
                   alt="The Essentials System – SmoDay"
