@@ -22,7 +22,7 @@ export default function S08KostraadPerKategori() {
 
         <p className="mt-4 text-lg leading-8" style={{ color: "var(--slate)" }}>
           Systemet er laget for å gjøre det enklere å være konsekvent, men gode valg i hverdagen
-          er fortsatt grunnmuren.
+          er fortsatt grunnlaget.
         </p>
 
         <div className="mt-6 grid gap-4 sm:grid-cols-2 text-sm">

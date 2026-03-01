@@ -5,7 +5,7 @@ import Section2Products from "./sections/Section2Products";
 import Section3Om from "./sections/Section3Om";
 import Section4Viblir from "./sections/Section4Viblir";
 import Section5HowItWorks from "./sections/Section5HowItWorks";
-import Section6Subscription from "./sections/Section6Subscription";
+import Section6HealthTeaser from "./sections/Section6HealthTeaser";
 import Section7Trust from "./sections/Section7Trust";
 import Section8FAQ from "./sections/Section8FAQ";
 import Section9Contact from "./sections/Section9Contact";
@@ -23,9 +23,11 @@ export default function PanelPage() {
       <Section1Hero />
       <Section2Products />
       <Section3Om />
+
+      {/* resten tar vi etterpå */}
       <Section4Viblir />
       <Section5HowItWorks />
-      <Section6Subscription />
+      <Section6HealthTeaser />
       <Section7Trust />
       <Section8FAQ />
       <Section9Contact />

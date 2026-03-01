@@ -1,4 +1,6 @@
-export default function AboutHero() {
+// /Users/oystein/nettsider/smootday-v2-feb-26/src/app/(public)/about/sections/About1Hero.tsx
+
+export default function About1Hero() {
   return (
     <section className="mx-auto w-full max-w-6xl px-6 pt-10 pb-6">
       <div
@@ -17,7 +19,7 @@ export default function AboutHero() {
           className="mt-3 text-3xl sm:text-5xl font-extrabold tracking-tight"
           style={{ fontFamily: "var(--font-heading)", color: "var(--ink)" }}
         >
-          Vi bygger et{" "}
+          Et{" "}
           <span
             style={{
               background: "var(--g-primary)",
@@ -31,20 +33,27 @@ export default function AboutHero() {
         </h1>
 
         <p className="mt-4 text-lg leading-8" style={{ color: "var(--slate)" }}>
-          Målet er en enkel rutine: få oversikt, forstå hva som faktisk er viktig, og
-          velg et fåtall produkter som dekker “grunnmuren”.
+          Vi startet under pandemien, da mange fikk kjenne på hvor viktig{" "}
+          <b>grunnlagene</b> er: søvn, aktivitet, næringsrik mat – og en rutine som
+          faktisk er mulig å holde. SmoDay handler om å gjøre “riktig” enklere,
+          uten støy og uten hundre valg.
         </p>
 
         <div className="mt-6 flex flex-col sm:flex-row gap-3">
           <a
             href="/panel#produkter"
             className="inline-flex h-12 items-center justify-center px-6 text-sm font-extrabold"
-            style={{ background: "var(--g-primary)", color: "#fff", borderRadius: 9999 }}
+            style={{
+              background: "var(--g-primary)",
+              color: "#fff",
+              borderRadius: 9999,
+            }}
           >
-            Se produkter
+            Se produktene
           </a>
+
           <a
-            href="/system"
+            href="/benefits"
             className="inline-flex h-12 items-center justify-center px-6 text-sm font-extrabold"
             style={{
               background: "rgba(255,255,255,0.70)",
@@ -53,9 +62,13 @@ export default function AboutHero() {
               borderRadius: 9999,
             }}
           >
-            Les om systemet
+            Les om helse & grunnmur
           </a>
         </div>
+
+        <p className="mt-4 text-xs leading-6" style={{ color: "rgba(11,18,32,0.60)" }}>
+          Mer detaljer og kilder ligger på helsesiden, slik at forsiden kan være kort og enkel.
+        </p>
       </div>
     </section>
   );

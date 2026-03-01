@@ -1,25 +1,48 @@
 // /Users/oystein/nettsider/smootday-v2-feb-26/src/app/(public)/panel/sections/Section3Om.tsx
 
+import Image from "next/image";
+import Section from "@/components/ui/Section";
+import { Card, CardBody } from "@/components/ui/Card";
+import { Kicker, H2, P, SmallNote } from "@/components/ui/Typography";
+import { LinkOutline } from "@/components/ui/Button";
+
 export default function Section3Om() {
   return (
-    <section id="om" className="mx-auto w-full max-w-6xl px-6 pb-10">
-      <div
-        className="rounded-3xl border p-8 sm:p-10"
-        style={{
-          background: "var(--surface)",
-          borderColor: "var(--line)",
-          boxShadow: "var(--shadow-card)",
-        }}
-      >
-        <div className="max-w-3xl">
-          <p className="text-sm font-semibold" style={{ color: "var(--slate)" }}>
-            Om SmoDay • Hvorfor vi bygger det essensielle systemet
-          </p>
-
-          <h2
-            className="mt-3 text-2xl sm:text-4xl font-extrabold tracking-tight"
-            style={{ fontFamily: "var(--font-heading)", color: "var(--ink)" }}
+    <Section id="om" className="pt-0 pb-10">
+      <Card>
+        <CardBody>
+          {/* FLOAT IMAGE: text wraps on desktop, stacked on mobile */}
+          <div
+            className={[
+              "mb-4",
+              "w-full max-w-55",
+              "mx-auto", // mobile: center
+              "md:float-right md:ml-6 md:mb-3 md:mt-2 md:mx-0", // desktop: float right
+            ].join(" ")}
           >
+            <div
+              className="rounded-2xl border p-2"
+              style={{
+                borderColor: "var(--line)",
+                background: "rgba(255,255,255,0.55)",
+                boxShadow: "var(--shadow-soft)",
+              }}
+            >
+              <div className="relative h-30 w-full overflow-hidden rounded-xl">
+                <Image
+                  src="/Section1bOm.png"
+                  alt="Forskning og utvikling – The Essentials System"
+                  fill
+                  className="object-cover object-center"
+                  priority={false}
+                />
+              </div>
+            </div>
+          </div>
+
+          <Kicker>• Hvorfor vi bygger The Essentials System</Kicker>
+
+          <H2>
             Vi startet under{" "}
             <span
               style={{
@@ -31,46 +54,52 @@ export default function Section3Om() {
               koronaen
             </span>{" "}
             fordi vi så hvor viktig det er å ta vare på kroppen – i praksis.
-          </h2>
+          </H2>
 
-        <p className="mt-4 text-lg leading-8" style={{ color: "var(--slate)" }}>
-  Under koronaen ble det tydelig hvor viktig <b>grunnmuren</b> er i praksis:
-  søvn, aktivitet, næringsrik mat – og rutiner som faktisk er mulig å følge over tid.
-  Vi stilte oss spørsmålet: <b>Hvordan kan vi gjøre det enklere å støtte kroppen – hver dag?</b>
-</p>
+          <P className="text-base sm:text-lg mt-4">
+            Pandemien minnet oss på hvor viktig{" "}
+            <b style={{ color: "var(--ink)" }}>grunnlaget</b> er: søvn, aktivitet og
+            næringsrik mat – og en rutine som faktisk er mulig å holde. Samtidig ser vi at mange
+            får i seg <b style={{ color: "var(--ink)" }}>for lite</b> av noen nøkkelnæringsstoffer,
+            spesielt <b style={{ color: "var(--ink)" }}>vitamin D</b> (og i noen perioder også{" "}
+            <b style={{ color: "var(--ink)" }}>vitamin C</b>).
+          </P>
 
-<p className="mt-3 text-lg leading-8" style={{ color: "var(--slate)" }}>
-  Svaret ble et system bygget rundt <b>essensielle næringsstoffer</b> – byggesteiner kroppen trenger jevnlig,
-  men som den ikke alltid kan produsere selv (eller nok av). Vi fokuserer på <b>det viktigste</b>,
-  og på <b>biotilgjengelighet</b> – altså hva kroppen faktisk tar opp og bruker.
-</p>
+          <P className="text-base sm:text-lg">
+            I praksis er det også vanskelig å <b style={{ color: "var(--ink)" }}>vite</b> hva du
+            faktisk ligger på. Skal du måle status, må du ofte til lege for blodprøver – og selv da
+            er det typisk bare <b style={{ color: "var(--ink)" }}>noen få</b> som sjekkes rutinemessig
+            (for eksempel <b style={{ color: "var(--ink)" }}>vitamin B12</b>,{" "}
+            <b style={{ color: "var(--ink)" }}>folat</b> og <b style={{ color: "var(--ink)" }}>vitamin D</b>).
+          </P>
 
-<p className="mt-3 text-lg leading-8" style={{ color: "var(--slate)" }}>
-  Derfor har vi brukt år på å finne produsenter som leverer <b>kvalitet</b>, <b>dokumentasjon</b> og
-  <b>stabil produksjon</b>. Resultatet er The Essentials System – et enkelt oppsett med 
-  <b> drikk/pulver</b>, <b>kapsler</b> og <b>omega-3 som softgel</b> for best opplevelse.
-</p>
+          <P className="text-base sm:text-lg">
+            Derfor laget vi <b style={{ color: "var(--ink)" }}>The Essentials System</b>: en enkel
+            daglig rutine som fokuserer på <b style={{ color: "var(--ink)" }}>det essensielle</b> – ikke
+            “mer og mer”, men det kroppen trenger jevnlig – og med fokus på{" "}
+            <b style={{ color: "var(--ink)" }}>biotilgjengelighet</b> (hva kroppen faktisk tar opp og bruker).
+          </P>
+
+          <SmallNote>
+            Vi forklarer dette mer detaljert (med kilder og tall) på{" "}
+            <a href="/benefits" style={{ textDecoration: "underline", color: "var(--ink)" }}>
+              helsesiden
+            </a>
+            .
+          </SmallNote>
 
           <div className="mt-6 flex flex-col sm:flex-row gap-3">
-            <a
-              href="/about"
-              className="inline-flex h-12 items-center justify-center px-6 text-sm font-extrabold"
-              style={{
-                background: "rgba(255,255,255,0.70)",
-                color: "var(--ink)",
-                border: "1px solid var(--line)",
-                borderRadius: 9999,
-              }}
-            >
-              Les hele historien
-            </a>
+            <LinkOutline href="/about">Les hele historien</LinkOutline>
           </div>
 
           <p className="mt-4 text-xs leading-6" style={{ color: "var(--slate)" }}>
             *Systemet er laget for å støtte en praktisk hverdagsrutine sammen med et sunt kosthold og fysisk aktivitet.
           </p>
-        </div>
-      </div>
-    </section>
+
+          {/* Clear float so following sections don’t wrap */}
+          <div className="clear-both" />
+        </CardBody>
+      </Card>
+    </Section>
   );
 }

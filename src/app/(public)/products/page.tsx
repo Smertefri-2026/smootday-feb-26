@@ -15,14 +15,14 @@ const products: ProductCard[] = [
     title: "ODF (Powder)",
     desc: "Daglig base – laget for en enkel rutine du faktisk følger.",
     href: "/shop/odf",
-    img: "/products/odf.png",
+    img: "/products/odf4.png",
     badge: "Daily Base",
   },
   {
     title: "Omega-3",
     desc: "EPA & DHA – enkel del av Essentials-rutinen.",
     href: "/shop/omega",
-    img: "/products/omega.png",
+    img: "/products/omega2.png",
     badge: "Complete+",
   },
   {

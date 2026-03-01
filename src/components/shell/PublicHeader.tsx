@@ -10,6 +10,7 @@ type Item = { href: string; label: string };
 export default function PublicHeader({ brand = "SmoDay" }: { brand?: string }) {
   const pathname = usePathname();
   const isHome = pathname === "/";
+  const isPanel = pathname === "/panel";
 
   const [open, setOpen] = useState(false);
   const [cartCount, setCartCount] = useState(0);
@@ -19,11 +20,13 @@ export default function PublicHeader({ brand = "SmoDay" }: { brand?: string }) {
   const panelRef = useRef<HTMLDivElement | null>(null);
   const btnRef = useRef<HTMLButtonElement | null>(null);
 
-  const centerLinks: Item[] = useMemo(
+  // ✅ Endelig struktur (ingen /products)
+  // Produkter og Kontakt peker til panel-seksjoner
+  const links: Item[] = useMemo(
     () => [
-      { href: "/system", label: "System" },
-      { href: "/products", label: "Produkter" },
-      { href: "/benefits", label: "Helse & FAQ" },
+      { href: "/panel#produkter", label: "Produkter" },
+      { href: "/benefits", label: "Helse" },
+            { href: "/system", label: "System" },
       { href: "/about", label: "Om" },
     ],
     []
@@ -130,18 +133,13 @@ export default function PublicHeader({ brand = "SmoDay" }: { brand?: string }) {
       <div
         className="border-b backdrop-blur transition-[box-shadow,background-color,border-color] duration-200"
         style={{
-          // glass look: a bit more transparent when scrolled
-          background: scrolled
-            ? "rgba(16, 163, 74, 0.72)" // green glass (matches --g-primary vibe)
-            : "var(--g-primary)",
-          borderColor: scrolled
-            ? "rgba(255,255,255,0.22)"
-            : "rgba(255,255,255,0.18)",
+          background: scrolled ? "rgba(16, 163, 74, 0.72)" : "var(--g-primary)",
+          borderColor: scrolled ? "rgba(255,255,255,0.22)" : "rgba(255,255,255,0.18)",
           boxShadow: scrolled ? "0 18px 38px rgba(2, 6, 23, 0.18)" : "none",
         }}
       >
         <div className="mx-auto flex h-14 w-full max-w-6xl items-center justify-between px-6">
-          {/* LEFT: Brand -> Home */}
+          {/* LEFT: Brand -> startsiden "/" (smooth top hvis du allerede er på "/") */}
           <a
             href="/panel"
             onClick={(e) => {
@@ -149,7 +147,7 @@ export default function PublicHeader({ brand = "SmoDay" }: { brand?: string }) {
               setOpen(false);
             }}
             className="flex items-center gap-3"
-            aria-label="Gå til hjem"
+            aria-label="Gå til startsiden"
           >
             <div className="leading-tight">
               <div
@@ -167,21 +165,19 @@ export default function PublicHeader({ brand = "SmoDay" }: { brand?: string }) {
             </div>
           </a>
 
-          {/* CENTER */}
+          {/* CENTER: nav */}
           <nav className="hidden md:flex items-center justify-center gap-2 flex-1">
-            {centerLinks.map((l) => (
+            {links.map((l) => (
               <a
                 key={l.href}
                 href={l.href}
                 className={pill}
                 style={pillStyle}
                 onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLAnchorElement).style.background =
-                    "rgba(255,255,255,0.22)";
+                  (e.currentTarget as HTMLAnchorElement).style.background = "rgba(255,255,255,0.22)";
                 }}
                 onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLAnchorElement).style.background =
-                    "rgba(255,255,255,0.16)";
+                  (e.currentTarget as HTMLAnchorElement).style.background = "rgba(255,255,255,0.16)";
                 }}
               >
                 {l.label}
@@ -189,39 +185,33 @@ export default function PublicHeader({ brand = "SmoDay" }: { brand?: string }) {
             ))}
           </nav>
 
-          {/* RIGHT */}
+          {/* RIGHT: Kontakt + Handlekurv + Meny */}
           <div className="flex items-center gap-2">
-            {/* Contact */}
             <a
-              href="/contact"
+              href="/panel#kontakt"
               className={iconBtn}
               style={iconStyle}
               title="Kontakt"
               onMouseEnter={(e) => {
-                (e.currentTarget as HTMLAnchorElement).style.background =
-                  "rgba(255,255,255,0.26)";
+                (e.currentTarget as HTMLAnchorElement).style.background = "rgba(255,255,255,0.26)";
               }}
               onMouseLeave={(e) => {
-                (e.currentTarget as HTMLAnchorElement).style.background =
-                  "rgba(255,255,255,0.18)";
+                (e.currentTarget as HTMLAnchorElement).style.background = "rgba(255,255,255,0.18)";
               }}
             >
               ✉️ <span className="ml-2 hidden sm:inline">Kontakt</span>
             </a>
 
-            {/* Cart */}
             <a
               href="/cart"
               className={iconBtn}
               style={iconStyle}
               title="Handlekurv"
               onMouseEnter={(e) => {
-                (e.currentTarget as HTMLAnchorElement).style.background =
-                  "rgba(255,255,255,0.26)";
+                (e.currentTarget as HTMLAnchorElement).style.background = "rgba(255,255,255,0.26)";
               }}
               onMouseLeave={(e) => {
-                (e.currentTarget as HTMLAnchorElement).style.background =
-                  "rgba(255,255,255,0.18)";
+                (e.currentTarget as HTMLAnchorElement).style.background = "rgba(255,255,255,0.18)";
               }}
             >
               🛒 <span className="ml-2 hidden sm:inline">Handlekurv</span>
@@ -242,7 +232,6 @@ export default function PublicHeader({ brand = "SmoDay" }: { brand?: string }) {
               ) : null}
             </a>
 
-            {/* Mobile toggle */}
             <button
               ref={btnRef}
               className="md:hidden inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-extrabold transition ring-1"
@@ -258,7 +247,7 @@ export default function PublicHeader({ brand = "SmoDay" }: { brand?: string }) {
           </div>
         </div>
 
-        {/* Mobile menu */}
+        {/* Mobile menu: samme knapper som desktop (ingen Hjem/Panel) */}
         <div
           id="mobile-menu"
           ref={panelRef}
@@ -271,16 +260,7 @@ export default function PublicHeader({ brand = "SmoDay" }: { brand?: string }) {
         >
           <div className="mx-auto w-full max-w-6xl px-6 py-3">
             <div className="grid gap-2">
-              <a
-                href="/"
-                onClick={() => setOpen(false)}
-                className="rounded-2xl px-4 py-3 text-center font-extrabold transition ring-1"
-                style={pillStyle}
-              >
-                Hjem
-              </a>
-
-              {centerLinks.map((l) => (
+              {links.map((l) => (
                 <a
                   key={l.href}
                   href={l.href}
@@ -293,7 +273,7 @@ export default function PublicHeader({ brand = "SmoDay" }: { brand?: string }) {
               ))}
 
               <a
-                href="/contact"
+                href="/panel#kontakt"
                 onClick={() => setOpen(false)}
                 className="rounded-2xl px-4 py-3 text-center font-extrabold transition ring-1"
                 style={pillStyle}

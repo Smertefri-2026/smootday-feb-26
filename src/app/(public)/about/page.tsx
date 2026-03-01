@@ -5,7 +5,6 @@ import About2Story from "./sections/About2Story";
 import About3SystemExplained from "./sections/About3SystemExplained";
 import About4Quality from "./sections/About4Quality";
 import About5FAQ from "./sections/About5FAQ";
-import About6Contact from "./sections/About6Contact";
 
 export default function AboutPage() {
   return (
@@ -22,7 +21,6 @@ export default function AboutPage() {
       <About3SystemExplained />
       <About4Quality />
       <About5FAQ />
-      <About6Contact />
     </div>
   );
 }

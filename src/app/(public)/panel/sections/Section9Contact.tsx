@@ -1,52 +1,95 @@
-export default function Section6Contact() {
-  return (
-    <section id="kontakt" className="mx-auto w-full max-w-6xl px-6 py-10 pb-16">
-      <div className="rounded-3xl border p-8 sm:p-10" style={{ background: "var(--surface)", borderColor: "var(--line)", boxShadow: "var(--shadow-soft)" }}>
-        <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
-          <div className="max-w-xl">
-            <h2 className="text-2xl sm:text-3xl font-extrabold" style={{ fontFamily: "var(--font-heading)" }}>
-              Kontakt
-            </h2>
-            <p className="mt-2" style={{ color: "var(--slate)" }}>
-              Spør oss om varianter, innhold, lansering eller samarbeid.
-            </p>
+// /Users/oystein/nettsider/smootday-v2-feb-26/src/app/(public)/panel/sections/Section9Contact.tsx
+"use client";
 
-            <div className="mt-6 grid gap-3">
-              <input className="h-12 rounded-2xl border px-4 text-sm" placeholder="Navn" />
-              <input className="h-12 rounded-2xl border px-4 text-sm" placeholder="E-post" />
-              <textarea className="rounded-2xl border p-4 text-sm" rows={4} placeholder="Melding" />
-              <button className="h-12 rounded-full text-sm font-extrabold" style={{ background: "var(--g-primary)", color: "#fff" }}>
-                Send (kommer)
-              </button>
-              <div className="text-xs" style={{ color: "var(--slate)" }}>
-                (Skjema kobles til e-post/CRM senere.)
+import Section from "@/components/ui/Section";
+import { Card, CardBody } from "@/components/ui/Card";
+import { Kicker, H2, P, SmallNote } from "@/components/ui/Typography";
+import { Button, LinkOutline } from "@/components/ui/Button";
+
+export default function Section9Contact() {
+  return (
+    <Section id="kontakt" className="py-10 pb-16">
+      <Card>
+        <CardBody className="p-6 sm:p-10">
+          {/* TOPPTEKST (full bredde) */}
+          <div className="max-w-3xl">
+            <H2 className="mt-2">Kontakt oss</H2>
+          </div>
+
+          {/* 2 kolonner */}
+          <div className="mt-8 grid gap-10 md:grid-cols-2 md:items-start">
+            {/* VENSTRE: Kontakt */}
+            <div className="min-w-0">
+              <Kicker>Send oss en melding</Kicker>
+              <H2 className="mt-2">Kontakt</H2>
+
+              <div className="mt-4 grid gap-3">
+                <input className="h-12 rounded-2xl border px-4 text-sm" placeholder="Navn" />
+                <input className="h-12 rounded-2xl border px-4 text-sm" placeholder="E-post" />
+                <textarea
+                  className="rounded-2xl border p-4 text-sm"
+                  rows={5}
+                  placeholder="Hva lurer du på?"
+                />
+
+                <div className="mt-1 flex flex-col sm:flex-row gap-3">
+                  <Button type="button" variant="primary" className="h-12">
+                    Send (kommer)
+                  </Button>
+
+                  <LinkOutline href="#faq" className="h-12">
+                    Se vanlige spørsmål
+                  </LinkOutline>
+                </div>
+
+                <SmallNote>(Skjema kobles til e-post/CRM før lansering.)</SmallNote>
+              </div>
+            </div>
+
+            {/* HØYRE: Abonnement */}
+            <div className="min-w-0">
+              <Kicker>Abonnement</Kicker>
+              <H2 className="mt-2">Si opp abonnement</H2>
+
+                        <div className="mt-4 grid gap-3">
+                <input
+                  className="h-12 rounded-2xl border px-4 text-sm"
+                  placeholder="Kunde-ID / kundenummer"
+                />
+                <input
+                  className="h-12 rounded-2xl border px-4 text-sm"
+                  placeholder="E-post (samme som på bestilling)"
+                />
+                <textarea
+                  className="rounded-2xl border p-4 text-sm"
+                  rows={5}
+                  placeholder="Valgfritt: skriv f.eks. «Si opp abonnement» + evt. navn/adresse for bekreftelse."
+                />
+    <P className="text-base sm:text-lg">
+                Abonnement har{" "}
+                <b style={{ color: "var(--ink)" }}>1 måneds oppsigelsestid</b>. Når du sier opp,
+                får du normalt <b style={{ color: "var(--ink)" }}>neste levering</b>, og abonnementet
+                stoppes etterpå.
+              </P>
+                <div className="mt-1 flex flex-col sm:flex-row gap-3">
+                  <Button type="button" variant="outline" className="h-12">
+                    Send oppsigelse (kommer)
+                  </Button>
+
+                  <LinkOutline href="/benefits" className="h-12">
+                    Les mer om vilkår
+                  </LinkOutline>
+                </div>
+
+                <SmallNote>
+                  <br />
+                  Ved lansering vil du også kunne administrere abonnementet på «Min side».
+                </SmallNote>
               </div>
             </div>
           </div>
-
-          <div className="w-full md:max-w-sm rounded-3xl border p-6" style={{ background: "var(--bg-2)", borderColor: "var(--line)" }}>
-            <div className="text-sm font-semibold" style={{ color: "var(--slate)" }}>
-              15 min samtale
-            </div>
-            <div className="mt-2 text-lg font-extrabold" style={{ color: "var(--ink)" }}>
-              Book en kort prat
-            </div>
-            <p className="mt-2 text-sm" style={{ color: "var(--slate)" }}>
-              Vi kan hjelpe deg velge riktig variant og forklare systemet.
-            </p>
-
-            <a
-              href="https://cal.com/smertefri/15min"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-5 inline-flex h-12 w-full items-center justify-center rounded-full px-6 text-sm font-extrabold"
-              style={{ background: "var(--g-primary)", color: "#fff" }}
-            >
-              Book 15 min
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
+        </CardBody>
+      </Card>
+    </Section>
   );
 }

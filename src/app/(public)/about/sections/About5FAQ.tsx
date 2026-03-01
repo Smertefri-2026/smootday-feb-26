@@ -16,7 +16,7 @@ export default function AboutFAQ() {
           {[
             {
               q: "Hvorfor ikke bare “spise sunt”?",
-              a: "Sunn mat er grunnmuren. Systemet vårt er laget for å være et praktisk tillegg som gjør det enklere å være konsekvent — spesielt når hverdagen blir hektisk.",
+              a: "Sunn mat er godkjente. Systemet vårt er laget for å være et praktisk tillegg som gjør det enklere å være konsekvent — spesielt når hverdagen blir hektisk.",
             },
             {
               q: "Er dette ment som erstatning for mat?",
