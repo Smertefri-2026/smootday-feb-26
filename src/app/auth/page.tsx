@@ -9,7 +9,7 @@ export default function UnlockPage() {
   const submit = () => {
     setErr(null);
 
-    if (pw.trim().toLowerCase() !== "henry") {
+    if (pw.trim().toLowerCase() !== "Emil") {
       setErr("Feil passord");
       return;
     }
